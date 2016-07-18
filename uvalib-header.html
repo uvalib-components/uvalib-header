@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`uvalib-header`
+UVA Library Page Header
+
+@demo demo/index.html 
+-->
+
+<dom-module id="uvalib-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-header',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'uvalib-header',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
