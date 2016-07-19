@@ -62,11 +62,11 @@ UVA Library Page Header
       app-toolbar {
         margin-bottom: 10px;
       }
+
     </style>
 
     <app-header condenses reveals fixed effects="waterfall">
       <app-toolbar class="upper">
-        <paper-icon-button icon="bars"></paper-icon-button>
         <div main-title></div>
         <paper-button><iron-icon icon="user"></iron-icon>My Account</paper-button>
         <paper-button><iron-icon icon="clock-o"></iron-icon>Library Hours</paper-button>
@@ -74,6 +74,9 @@ UVA Library Page Header
       </app-toolbar>
 
       <app-toolbar class="lower" sticky>
+        <template is="dom-if" if="[[_smallScreen(screenSize)]]">
+          <paper-icon-button icon="bars" on-click="_toggleMenu"></paper-icon-button>
+        </template>
         <div main-title><uvalib-horizontal-logo></uvalib-horizontal-logo></div>
       </app-toolbar>
     </app-header>
@@ -92,14 +95,18 @@ UVA Library Page Header
           observer: '_enumScreenSize'
         },
       },
-
       _enumScreenSize: function(newValue, oldValue) {
         var validSizes = ['large','medium','small'];
         if(validSizes.indexOf(newValue) === -1) {
           this.screenSize = oldValue;
         }
+      },
+      _smallScreen: function(){
+        return this.screenSize === 'small';
+      },
+      _toggleMenu: function(){
+        this.fire('toggleMenu');
       }
-
     });
   </script>
 </dom-module>
