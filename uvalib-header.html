@@ -74,7 +74,7 @@ UVA Library Page Header
       </app-toolbar>
 
       <app-toolbar class="lower" sticky>
-        <template is="dom-if" if="[[_smallScreen(screenSize)]]">
+        <template is="dom-if" if="{{_smallScreen(screenSize)}}">
           <paper-icon-button icon="bars" on-click="_toggleMenu"></paper-icon-button>
         </template>
         <div main-title><uvalib-horizontal-logo></uvalib-horizontal-logo></div>
