@@ -110,8 +110,13 @@ UVA Library Page Header
       is: 'uvalib-header',
 
       properties: {
-        narrow: Boolean
+        narrow: Boolean,
+        screenSize: String
       },
+
+      _smallScreen: function(size) {
+        return size === 'small';
+      }
 
     });
   </script>
