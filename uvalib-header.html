@@ -7,6 +7,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-logos/uvalib-horizontal-logo.html">
 
 <!--
@@ -21,6 +22,7 @@ UVA Library Page Header
     <style>
       :host {
         display: block;
+        padding-bottom: 132px;
       }
 
       app-header {
@@ -62,14 +64,33 @@ UVA Library Page Header
       app-toolbar {
         margin-bottom: 10px;
       }
-
+      iron-icon {
+        margin-right: 7px;
+        color: var(--color-white, white);
+      }
+      a:link {
+        color: var(--color-primary-orange);
+        text-decoration: none;
+      }
+      a:visited {
+        color: var(--color-primary-orange);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--color-primary-orange);
+        text-decoration: none;
+      }
+      a:active {
+        color: var(--color-primary-orange);
+        text-decoration: none;
+      }
     </style>
 
     <app-header condenses reveals fixed effects="waterfall">
       <app-toolbar class="upper">
         <div main-title></div>
-        <paper-button><iron-icon icon="user"></iron-icon>My Account</paper-button>
-        <paper-button><iron-icon icon="clock-o"></iron-icon>Library Hours</paper-button>
+        <a href="http://search.lib.virginia.edu/account"><paper-button><iron-icon icon="user"></iron-icon>My Account</paper-button></a>
+        <a href="http://www.library.virginia.edu/hours/"><paper-button><iron-icon icon="clock-o"></iron-icon>Library Hours</paper-button>
         <paper-button><iron-icon icon="comments"></iron-icon>Ask A Librarian</paper-button>
       </app-toolbar>
 
@@ -89,24 +110,9 @@ UVA Library Page Header
       is: 'uvalib-header',
 
       properties: {
-        screenSize: {
-          type: String,
-          value: 'large',
-          observer: '_enumScreenSize'
-        },
+        narrow: Boolean
       },
-      _enumScreenSize: function(newValue, oldValue) {
-        var validSizes = ['large','medium','small'];
-        if(validSizes.indexOf(newValue) === -1) {
-          this.screenSize = oldValue;
-        }
-      },
-      _smallScreen: function(){
-        return this.screenSize === 'small';
-      },
-      _toggleMenu: function(){
-        this.fire('togglemenu');
-      }
+
     });
   </script>
 </dom-module>
