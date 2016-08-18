@@ -11,6 +11,7 @@
   <link rel="import" href="../uvalib-logos/uvalib-logo.html">
   <link rel="import" href="../uvalib-button/uvalib-button.html">
   <link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
+  <link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
 
 <!--
 `uvalib-header`
@@ -109,7 +110,7 @@ UVA Library Page Header
     <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
     <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
     <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
-
+      <uvalib-skip-nav></uvalib-skip-nav>
       <app-header condenses reveals fixed effects="waterfall resize-snapped-title">
         <app-toolbar>
           <uvalib-logo main-title stacked text-only reverse></uvalib-logo>
