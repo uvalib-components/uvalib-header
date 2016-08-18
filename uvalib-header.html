@@ -9,6 +9,7 @@
   <link rel="import" href="../uvalib-theme/uvalib-theme.html">
   <link rel="import" href="../uvalib-theme/uvalib-icons.html">
   <link rel="import" href="../uvalib-logos/uvalib-logo.html">
+  <link rel="import" href="../uvalib-nav/uvalib-nav.html">
   <link rel="import" href="../uvalib-button/uvalib-button.html">
   <link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
 
@@ -56,20 +57,6 @@ UVA Library Page Header
       #nav {
         height: 79px;
       }
-      paper-tabs {
-        padding-left: 250px;
-        height: 79px;
-      }
-      paper-tab {
-        font-size: 25px;
-      }
-      paper-tab[selected] {
-        font-weight: normal;
-      }
-      paper-tab a {
-        text-decoration: none;
-        color: var(--color-white);
-      }
       uvalib-logo {
         position: absolute;
         padding: 15px;
@@ -104,6 +91,26 @@ UVA Library Page Header
         border-radius: 3px;
         box-shadow: 0px 2px 6px #ccc;
       }
+      /* desktop */
+      @media (min-width: 993px) {
+        uvalib-nav {
+          padding-left: 250px;
+          height: 79px;
+        }
+      }
+      /* tablet */
+      @media (min-width: 601px) and (max-width: 992px) {
+        uvalib-logo[condensed-title] {
+          display: none;
+        }
+      }
+      /* mobile */
+      @media (max-width: 600px) {
+        uvalib-logo {
+          display: none;
+          width: 0px;
+        }
+      }
     </style>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
@@ -112,7 +119,7 @@ UVA Library Page Header
 
       <app-header condenses reveals fixed effects="waterfall resize-snapped-title">
         <app-toolbar>
-          <uvalib-logo main-title stacked text-only reverse></uvalib-logo>
+          <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
           <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
           <h1 main-title></h1>
           <uvalib-button icon="search">Search</uvalib-button>
@@ -130,14 +137,8 @@ UVA Library Page Header
         </app-toolbar>
 
         <div id="nav" sticky>
-          <uvalib-logo condensed-title stacked text-only reverse></uvalib-logo>
-          <paper-tabs selected="0" sticky no-bar noink no-slide attr-for-selected="selected">
-            <!--<span condensed-title></span>-->
-            <paper-tab link><a href="" class="link" tabindex="-1">About</a></paper-tab>
-            <paper-tab link><a href="" class="link" tabindex="-1">Research</a></paper-tab>
-            <paper-tab link><a href="" class="link" tabindex="-1">Collections</a></paper-tab>
-            <paper-tab link><a href="" class="link" tabindex="-1">Services</a></paper-tab>
-          </paper-tabs>
+          <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+          <uvalib-nav include-search$="{{mediumScreen}}" search-code="???"></uvalib-nav>
         </div>
       </app-header>
 
