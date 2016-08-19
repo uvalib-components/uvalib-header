@@ -140,9 +140,12 @@ UVA Library Page Header
           <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
         </app-toolbar>
 
-        <div id="nav" sticky>
+        <div id="nav" sticky hidden$="{{smallScreen}}">
           <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
           <uvalib-nav include-search$="{{mediumScreen}}" search-code="???"></uvalib-nav>
+        </div>
+        <div id="search" sticky hidden$="{{!smallScreen}}">
+          <uvalib-search-box use-icon-for-button></uvalib-search-box>
         </div>
       </app-header>
 
