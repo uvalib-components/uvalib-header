@@ -13,6 +13,7 @@
   <link rel="import" href="../uvalib-button/uvalib-button.html">
   <link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
   <link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
+  <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
 
 <!--
 `uvalib-header`
@@ -142,7 +143,10 @@ UVA Library Page Header
 
         <div id="nav" sticky hidden$="{{smallScreen}}">
           <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
-          <uvalib-nav include-search$="{{mediumScreen}}" search-code="???"></uvalib-nav>
+          <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
+        </div>
+        <div id="simple-search" hidden$="{{!_showSearch}}">
+          <uvalib-search-box></uvalib-search-box>
         </div>
         <div id="search" sticky hidden$="{{!smallScreen}}">
           <uvalib-search-box use-icon-for-button></uvalib-search-box>
@@ -186,8 +190,19 @@ UVA Library Page Header
           notify: true,
           value: false,
           reflectToAttribute: true
+        },
+        _showSearch: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
         }
       },
+
+      showSearch: function(ev) {
+        this._showSearch = (this._showSearch) ? false : true;
+        console.log("show search");
+      },
+
       openHours: function(ev){
         this.$.hours.positionTarget = ev.target;
         this.$.hours.open();
