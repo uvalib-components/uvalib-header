@@ -154,6 +154,18 @@ UVA Library Page Header
       is: 'uvalib-header',
 
       properties: {
+        /**
+         * Array of JSON items that represent the navigation. Each JSON item has a label property, an icon property, and a url property.
+         */
+        navigation: {
+          type: Array,
+          value: [
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+          ],
+        },
         smallScreen: {
           type: Boolean,
           notify: true,
