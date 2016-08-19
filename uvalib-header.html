@@ -149,7 +149,7 @@ UVA Library Page Header
           <uvalib-search-box></uvalib-search-box>
         </div>
         <div id="side-nav" sticky hidden$="{{!smallScreen}}">
-          <uvalib-button icon="bars" on-tap="openDraw"><uvalib-button>
+          <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
           <uvalib-search-box use-icon-for-button></uvalib-search-box>
         </div>
       </app-header>
@@ -199,8 +199,9 @@ UVA Library Page Header
         }
       },
 
-      openDraw: function(ev) {
+      openDrawer: function(ev) {
         this.fire('open-draw');
+        console.log('open drawer');
       },
 
       showSearch: function(ev) {
