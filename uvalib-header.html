@@ -148,7 +148,8 @@ UVA Library Page Header
         <div id="simple-search" hidden$="{{!_showSearch}}">
           <uvalib-search-box></uvalib-search-box>
         </div>
-        <div id="search" sticky hidden$="{{!smallScreen}}">
+        <div id="side-nav" sticky hidden$="{{!smallScreen}}">
+          <uvalib-button icon="bars" on-tap="openDraw"><uvalib-button>
           <uvalib-search-box use-icon-for-button></uvalib-search-box>
         </div>
       </app-header>
@@ -198,9 +199,12 @@ UVA Library Page Header
         }
       },
 
+      openDraw: function(ev) {
+        this.fire('open-draw');
+      },
+
       showSearch: function(ev) {
         this._showSearch = (this._showSearch) ? false : true;
-        console.log("show search");
       },
 
       openHours: function(ev){
