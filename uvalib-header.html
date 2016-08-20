@@ -83,6 +83,11 @@ UVA Library Page Header
         --uvalib-button-icon-height: 15px;
         --uvalib-button-font-weight: 100;
       }
+      .card-close {
+        color: var(--color-text-gray);
+        float: right;
+        padding-right: 0px;
+      }
       .link {
         @apply(--layout-horizontal);
         @apply(--layout-center-center);
@@ -131,7 +136,9 @@ UVA Library Page Header
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
           <iron-dropdown id="hours" horizontal-align="right" vertical-align="top" no-overlap>
             <div class="dropdown-content">
-              <uvalib-hours-card all-locations elevation="3"></uvalib-hours-card>
+              <uvalib-hours-card all-locations elevation="3">
+                <uvalib-button class="card-close" icon="times" reverse on-tap="openHours"><uvalib-button>
+              </uvalib-hours-card>
             </div>
           </iron-dropdown>
           <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
