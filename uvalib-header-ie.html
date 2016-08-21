@@ -7,7 +7,11 @@
 <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
 -->
 <link rel="import" href="../app-layout/app-header/app-header.html">
+
+<!--
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
+-->
+
 <!--
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
@@ -143,7 +147,9 @@ UVA Library Page Header
       <app-toolbar>
         <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
         <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
+<!--
         <h1 main-title></h1>
+-->
         <uvalib-button icon="search">Search</uvalib-button>
         <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
         <iron-dropdown id="hours" horizontal-align="right" vertical-align="top" no-overlap>
