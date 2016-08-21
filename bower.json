@@ -3,7 +3,7 @@
   "description": "UVA Library Page Header",
   "main": "uvalib-header.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer": "polymer/polymer#^1.6.1",
     "app-layout": "PolymerElements/app-layout#^0.10.0",
     "uvalib-theme": "uvalib-components/uvalib-theme#master",
     "uvalib-logos": "uvalib-components/uvalib-logos#master",
@@ -15,7 +15,8 @@
     "uvalib-hours-card": "uvalib-components/uvalib-hours-card#master",
     "uvalib-nav": "uvalib-components/uvalib-nav",
     "uvalib-skip-nav": "uvalib-components/uvalib-skip-nav#master",
-    "uvalib-search-box": "uvalib-components/uvalib-search-box#master"
+    "uvalib-search-box": "uvalib-components/uvalib-search-box#master",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.22"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
