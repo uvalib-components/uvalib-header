@@ -98,6 +98,9 @@ UVA Library Page Header
         border-radius: 3px;
         box-shadow: 0px 2px 6px #ccc;
       }
+      .flex {
+        @apply(--layout-flex);
+      }
       /* desktop */
       @media (min-width: 993px) {
         uvalib-nav {
@@ -132,6 +135,7 @@ UVA Library Page Header
           <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
           <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
           <!--<h1 main-title></h1>-->
+          <div class="flex">
           <uvalib-button icon="search">Search</uvalib-button>
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
           <iron-dropdown id="hours" horizontal-align="right" vertical-align="top" no-overlap>
