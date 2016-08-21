@@ -1,85 +1,76 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../paper-tabs/paper-tabs.html">
+<link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
+
+<link rel="import" href="../app-layout/app-header/app-header.html">
+
 <!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+`uvalib-header`
+UVA Library Page Header
+
+@demo demo/index.html
 -->
 
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <title>app-header demo</title>
+<dom-module id="uvalib-header">
+  <template>
+    <style is="custom-style">
+      :host {
+        display: block;
+        background-color: #eee;
+        margin: 0;
+      }
 
-  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+      app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 132px;
+        color: #fff;
+        background-color: #4285f4;
+        --app-header-background-rear-layer: {
+          background-color: #0b8043;
+        };
+      }
 
-  <link rel="import" href="../iron-icons/iron-icons.html">
-  <link rel="import" href="../paper-icon-button/paper-icon-button.html">
-  <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
-  <link rel="import" href="../paper-tabs/paper-tabs.html">
-  <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
-  <link rel="import" href="../app-layout/demo/sample-content.html">
-  <link rel="import" href="../app-layout/app-header/app-header.html">
+      paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
 
-  <style is="custom-style">
+      app-toolbar {
+        margin-bottom: 20px;
+      }
 
-    body {
-      margin: 0;
-      font-family: arial;
-      background-color: #eee;
-    }
+      sample-content {
+        padding-top: 132px;
+      }
+    </style>
 
-    app-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 132px;
-      color: #fff;
-      background-color: #4285f4;
-      --app-header-background-rear-layer: {
-        background-color: #0b8043;
-      };
-    }
+    <app-header condenses reveals fixed effects="waterfall">
+      <app-toolbar>
+        <paper-icon-button icon="menu"></paper-icon-button>
+        <h1 main-title></h1>
+        <paper-icon-button icon="search"></paper-icon-button>
+      </app-toolbar>
 
-    paper-icon-button {
-      --paper-icon-button-ink-color: white;
-    }
+      <paper-tabs selected="0" sticky>
+        <paper-tab>TAB 1</paper-tab>
+        <paper-tab>TAB 2</paper-tab>
+        <paper-tab>TAB 3</paper-tab>
+      </paper-tabs>
+    </app-header>
 
-    app-toolbar {
-      margin-bottom: 20px;
-    }
 
-    sample-content {
-      padding-top: 132px;
-    }
+  </template>
 
-  </style>
+  <script>
+    Polymer({
 
-</head>
-<body unresolved>
+      is: 'uvalib-header',
 
-  <app-header condenses reveals fixed effects="waterfall">
-    <app-toolbar>
-      <paper-icon-button icon="menu"></paper-icon-button>
-      <h1 main-title></h1>
-      <paper-icon-button icon="search"></paper-icon-button>
-    </app-toolbar>
-
-    <paper-tabs selected="0" sticky>
-      <paper-tab>TAB 1</paper-tab>
-      <paper-tab>TAB 2</paper-tab>
-      <paper-tab>TAB 3</paper-tab>
-    </paper-tabs>
-  </app-header>
-
-  <sample-content size="100"></sample-content>
-
-</body>
-</html>
+    });
+  </script>
+</dom-module>
