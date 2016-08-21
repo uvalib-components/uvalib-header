@@ -17,36 +17,102 @@ UVA Library Page Header
 <dom-module id="uvalib-header">
   <template>
     <style is="custom-style">
-      :host {
-        display: block;
-        background-color: #eee;
-        margin: 0;
-      }
+    :host {
+      display: block;
+      margin: 0;
+      z-index: 1000;
+    }
 
-      app-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 132px;
-        color: #fff;
-        background-color: #4285f4;
-        --app-header-background-rear-layer: {
-          background-color: #0b8043;
-        };
+    app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 118px;
+      color: var(--color-white);
+      background-color: var(--color-primary-blue);
+      --app-header-background-rear-layer: {
+        background-color: #0b8043;
+      };
+    }
+    paper-icon-button {
+      --paper-icon-button-ink-color: white;
+    }
+    app-toolbar {
+      padding-left: 250px;
+      /*
+      margin-bottom: 31px;
+      */
+      height: 39px;
+    }
+    #top {
+      @apply(--layout-horizontal);
+    }
+    #nav {
+      height: 79px;
+    }
+    uvalib-logo {
+      position: absolute;
+      padding: 15px;
+      width: 175px;
+      left: 0;
+      top: 0;
+    }
+    uvalib-logo[condensed-title] {
+      position: absolute;
+      padding: 15px;
+      left: 0;
+      top: 0;
+      width: 100px;
+    }
+    uvalib-button {
+      color: var(--color-white);
+      font-size: 15px;
+      /*
+      height: 35px;
+      */
+      --uvalib-button-icon-width: 15px;
+      --uvalib-button-icon-height: 15px;
+      --uvalib-button-font-weight: 100;
+    }
+    .card-close {
+      color: var(--color-text-gray);
+      float: right;
+      padding-right: 0px;
+    }
+    .link {
+      @apply(--layout-horizontal);
+      @apply(--layout-center-center);
+    }
+    .dropdown-content {
+      background-color: white;
+      line-height: 20px;
+      border-radius: 3px;
+      box-shadow: 0px 2px 6px #ccc;
+    }
+    /* desktop */
+    @media (min-width: 993px) {
+      uvalib-nav {
+        padding-left: 250px;
+        height: 79px;
       }
-
-      paper-icon-button {
-        --paper-icon-button-ink-color: white;
+    }
+    /* tablet */
+    @media (min-width: 601px) and (max-width: 992px) {
+      uvalib-logo[condensed-title] {
+        display: none;
       }
-
-      app-toolbar {
-        margin-bottom: 20px;
+    }
+    /* mobile */
+    @media (max-width: 600px) {
+      uvalib-logo {
+        display: none;
+        width: 0px;
       }
-
-      sample-content {
-        padding-top: 132px;
+      uvalib-nav {
+        display: none;
       }
+    }
     </style>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
@@ -84,21 +150,6 @@ UVA Library Page Header
         </div>
       </div>
     </app-header>
-<!--
-    <app-header condenses reveals fixed effects="waterfall">
-      <app-toolbar>
-        <paper-icon-button icon="menu"></paper-icon-button>
-        <h1 main-title></h1>
-        <paper-icon-button icon="search"></paper-icon-button>
-      </app-toolbar>
-
-      <paper-tabs selected="0" sticky>
-        <paper-tab>TAB 1</paper-tab>
-        <paper-tab>TAB 2</paper-tab>
-        <paper-tab>TAB 3</paper-tab>
-      </paper-tabs>
-    </app-header>
--->
 
   </template>
 
