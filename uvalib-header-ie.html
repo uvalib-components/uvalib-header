@@ -1,0 +1,206 @@
+<link rel="import" href="../polymer/polymer.html">
+  <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="../iron-media-query/iron-media-query.html">
+  <link rel="import" href="../iron-dropdown/iron-dropdown.html">
+  <link rel="import" href="../paper-tabs/paper-tabs.html">
+  <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
+  <link rel="import" href="../app-layout/app-header/app-header.html">
+  <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
+  <link rel="import" href="../uvalib-theme/uvalib-theme.html">
+  <link rel="import" href="../uvalib-theme/uvalib-icons.html">
+  <link rel="import" href="../uvalib-logos/uvalib-logo.html">
+  <link rel="import" href="../uvalib-button/uvalib-button.html">
+
+
+<!--
+`uvalib-header`
+UVA Library Page Header
+
+@demo demo/index.html
+-->
+
+<dom-module id="uvalib-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin: 0;
+        z-index: 1000;
+      }
+
+      app-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 118px;
+        color: var(--color-white);
+        background-color: var(--color-primary-blue);
+        --app-header-background-rear-layer: {
+          background-color: #0b8043;
+        };
+      }
+      paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+      app-toolbar {
+        padding-left: 250px;
+        /*
+        margin-bottom: 31px;
+        */
+        height: 39px;
+      }
+      #top {
+        @apply(--layout-horizontal);
+      }
+      #nav {
+        height: 79px;
+      }
+      uvalib-logo {
+        position: absolute;
+        padding: 15px;
+        width: 175px;
+        left: 0;
+        top: 0;
+      }
+      uvalib-logo[condensed-title] {
+        position: absolute;
+        padding: 15px;
+        left: 0;
+        top: 0;
+        width: 100px;
+      }
+      uvalib-button {
+        color: var(--color-white);
+        font-size: 15px;
+        /*
+        height: 35px;
+        */
+        --uvalib-button-icon-width: 15px;
+        --uvalib-button-icon-height: 15px;
+        --uvalib-button-font-weight: 100;
+      }
+      .card-close {
+        color: var(--color-text-gray);
+        float: right;
+        padding-right: 0px;
+      }
+      .link {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+      .dropdown-content {
+        background-color: white;
+        line-height: 20px;
+        border-radius: 3px;
+        box-shadow: 0px 2px 6px #ccc;
+      }
+      /* desktop */
+      @media (min-width: 993px) {
+        uvalib-nav {
+          padding-left: 250px;
+          height: 79px;
+        }
+      }
+      /* tablet */
+      @media (min-width: 601px) and (max-width: 992px) {
+        uvalib-logo[condensed-title] {
+          display: none;
+        }
+      }
+      /* mobile */
+      @media (max-width: 600px) {
+        uvalib-logo {
+          display: none;
+          width: 0px;
+        }
+        uvalib-nav {
+          display: none;
+        }
+      }
+    </style>
+
+    <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
+    <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
+    <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
+      <app-header condenses reveals fixed effects="waterfall resize-snapped-title">
+        <app-toolbar>
+          <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+          <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
+          <h1 main-title></h1>
+          <uvalib-button icon="search">Search</uvalib-button>
+          <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+          <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
+        </app-toolbar>
+
+        <div id="nav" sticky hidden$="{{smallScreen}}">
+          <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+
+        </div>
+        <div id="side-nav" sticky hidden$="{{!smallScreen}}">
+          <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
+          <uvalib-search-box use-icon-for-button></uvalib-search-box>
+        </div>
+      </app-header>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'uvalib-header',
+
+      properties: {
+        /**
+         * Array of JSON items that represent the navigation. Each JSON item has a label property, an icon property, and a url property.
+         */
+        navigation: {
+          type: Array,
+          value: [
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+          ],
+        },
+        smallScreen: {
+          type: Boolean,
+          notify: true,
+          value: false,
+          reflectToAttribute: true
+        },
+        mediumScreen: {
+          type: Boolean,
+          notify: true,
+          value: false,
+          reflectToAttribute: true
+        },
+        largeScreen: {
+          type: Boolean,
+          notify: true,
+          value: false,
+          reflectToAttribute: true
+        },
+        _showSearch: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        }
+      },
+
+      openDrawer: function(ev) {
+        this.fire('open-drawer');
+        console.log('open drawer');
+      },
+
+      showSearch: function(ev) {
+        this._showSearch = (this._showSearch) ? false : true;
+      },
+
+      openHours: function(ev){
+        this.$.hours.positionTarget = ev.target;
+        this.$.hours.open();
+      }
+    });
+  </script>
+</dom-module>
