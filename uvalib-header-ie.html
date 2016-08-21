@@ -70,11 +70,19 @@ UVA Library Page Header
         <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
       </app-toolbar>
 
-      <paper-tabs selected="0" sticky>
-        <paper-tab>TAB 1</paper-tab>
-        <paper-tab>TAB 2</paper-tab>
-        <paper-tab>TAB 3</paper-tab>
-      </paper-tabs>
+      <div id="nav" sticky hidden$="{{smallScreen}}">
+        <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+        <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
+      </div>
+<!--
+      <div id="simple-search" hidden$="{{!_showSearch}}">
+        <uvalib-search-box></uvalib-search-box>
+      </div>
+      <div id="side-nav" sticky hidden$="{{!smallScreen}}">
+        <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
+        <uvalib-search-box use-icon-for-button></uvalib-search-box>
+      </div>
+-->
     </app-header>
 <!--
     <app-header condenses reveals fixed effects="waterfall">
