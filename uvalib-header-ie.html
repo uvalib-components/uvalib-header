@@ -70,15 +70,15 @@ UVA Library Page Header
         <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
       </app-toolbar>
 
-      <div>
-        <div id="nav" sticky hidden$="{{smallScreen}}">
+      <div sticky>
+        <div id="nav" hidden$="{{smallScreen}}">
           <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
           <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
         </div>
         <div id="simple-search" hidden$="{{!_showSearch}}">
           <uvalib-search-box></uvalib-search-box>
         </div>
-        <div id="side-nav" sticky hidden$="{{!smallScreen}}">
+        <div id="side-nav" hidden$="{{!smallScreen}}">
           <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
           <uvalib-search-box use-icon-for-button></uvalib-search-box>
         </div>
