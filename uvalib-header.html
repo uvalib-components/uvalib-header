@@ -2,6 +2,7 @@
   <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="../iron-media-query/iron-media-query.html">
   <link rel="import" href="../iron-dropdown/iron-dropdown.html">
+  <link rel="import" href="../iron-signals/iron-signals.html">
   <link rel="import" href="../paper-tabs/paper-tabs.html">
   <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
   <link rel="import" href="../app-layout/app-header/app-header.html">
@@ -132,6 +133,7 @@ UVA Library Page Header
       }
     </style>
 
+    <iron-signals on-iron-signal-searchinview="_searchSignal"></iron-signals>
     <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
     <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
     <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
@@ -142,7 +144,7 @@ UVA Library Page Header
           <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
           <!--<h1 main-title></h1>-->
           <div class="flex"></div>
-          <uvalib-button icon="search">Search</uvalib-button>
+          <uvalib-button icon="search" hidden$="{{_searchInView}}">Search</uvalib-button>
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
           <iron-dropdown id="hours" horizontal-align="right" vertical-align="top" no-overlap>
             <div class="dropdown-content">
@@ -210,7 +212,8 @@ UVA Library Page Header
           type: Boolean,
           value: false,
           reflectToAttribute: true
-        }
+        },
+        _searchInView: Boolean
       },
 
       openDrawer: function(ev) {
@@ -225,6 +228,9 @@ UVA Library Page Header
       openHours: function(ev){
         this.$.hours.positionTarget = ev.target;
         this.$.hours.open();
+      },
+      _searchSignal: function(e, searchInView, sender){
+        this._searchInView = searchInView;
       }
     });
   </script>
