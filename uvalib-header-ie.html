@@ -49,6 +49,40 @@ UVA Library Page Header
       }
     </style>
 
+    <iron-media-query query="(max-width: 600px)" query-matches="{{smallScreen}}"></iron-media-query>
+    <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
+    <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
+    <uvalib-skip-nav></uvalib-skip-nav>
+    <app-header condenses reveals fixed effects="waterfall resize-snapped-title">
+      <app-toolbar>
+        <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+        <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
+        <h1 main-title></h1>
+        <uvalib-button icon="search">Search</uvalib-button>
+        <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+        <iron-dropdown id="hours" horizontal-align="right" vertical-align="top" no-overlap>
+          <div class="dropdown-content">
+            <uvalib-hours-card all-locations elevation="3">
+              <uvalib-button class="card-close" icon="times" reverse on-tap="openHours"><uvalib-button>
+            </uvalib-hours-card>
+          </div>
+        </iron-dropdown>
+        <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
+      </app-toolbar>
+
+      <div id="nav" sticky hidden$="{{smallScreen}}">
+        <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+        <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
+      </div>
+      <div id="simple-search" hidden$="{{!_showSearch}}">
+        <uvalib-search-box></uvalib-search-box>
+      </div>
+      <div id="side-nav" sticky hidden$="{{!smallScreen}}">
+        <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
+        <uvalib-search-box use-icon-for-button></uvalib-search-box>
+      </div>
+    </app-header>
+<!--
     <app-header condenses reveals fixed effects="waterfall">
       <app-toolbar>
         <paper-icon-button icon="menu"></paper-icon-button>
@@ -62,7 +96,7 @@ UVA Library Page Header
         <paper-tab>TAB 3</paper-tab>
       </paper-tabs>
     </app-header>
-
+-->
 
   </template>
 
