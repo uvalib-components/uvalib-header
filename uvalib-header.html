@@ -173,19 +173,19 @@ UVA Library Page Header
           <div class="flex" hidden$="{{!smallScreen}}"></div>
           <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
         </app-toolbar>
-        <template is="dom-if" if="{{!smallScreen}}">
+        <template is="dom-if" if="{{!smallScreen}}" restamp>
           <div sticky id="nav">
             <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
             <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
           </div>
         </template>
-        <template is="dom-if" if="{{_showSearch}}">
+        <template is="dom-if" if="{{_showSearch}}" restamp>
           <div sticky id="simple-search">
             <uvalib-search-box></uvalib-search-box>
           </div>
         </template>
-        <template is="dom-if" if="{{smallScreen}}">
-          <div sticky id="side-nav" hidden$="{{!smallScreen}}">
+        <template is="dom-if" if="{{smallScreen}}" restamp>
+          <div sticky id="nav">
             <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
             <uvalib-search-box use-icon-for-button></uvalib-search-box>
           </div>
