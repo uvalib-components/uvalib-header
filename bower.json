@@ -16,7 +16,8 @@
     "uvalib-nav": "uvalib-components/uvalib-nav#master",
     "uvalib-skip-nav": "uvalib-components/uvalib-skip-nav#master",
     "uvalib-search-box": "uvalib-components/uvalib-search-box#master",
-    "iron-signals": "PolymerElements/iron-signals#^1.0.3"
+    "iron-signals": "PolymerElements/iron-signals#^1.0.3",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",

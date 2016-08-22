@@ -146,6 +146,14 @@ UVA Library Page Header
         uvalib-nav {
           display: none;
         }
+        #nav {
+          @apply(--layout-horizontal);
+          position: relative;
+          top: 20px;
+        }
+        #nav uvalib-search-box {
+          @apply(--layout-flex);
+        }
       }
     </style>
 
@@ -186,7 +194,10 @@ UVA Library Page Header
         </template>
         <template is="dom-if" if="{{smallScreen}}" restamp>
           <div sticky id="nav">
+<!--
             <uvalib-button icon="bars" on-tap="openDrawer"><uvalib-button>
+-->
+            <paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>
             <uvalib-search-box use-icon-for-button></uvalib-search-box>
           </div>
         </template>
