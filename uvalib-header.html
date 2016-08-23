@@ -176,7 +176,7 @@ UVA Library Page Header
           <iron-dropdown auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
             <div class="dropdown-content">
               <uvalib-hours-card all-locations elevation="3">
-                <uvalib-button class="card-close" icon="times" reverse on-tap="openHours">Close<uvalib-button>
+                <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
               </uvalib-hours-card>
             </div>
           </iron-dropdown>
@@ -190,7 +190,17 @@ UVA Library Page Header
             <a href="/">
               <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
             </a>
-            <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}"></uvalib-nav>
+            <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"
+<!--
+              navigation='[
+                {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
+                {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+                {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+                {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+              ]'>
+-->
+            </uvalib-nav>
+            <!--<uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>-->
           </div>
         </template>
         <template is="dom-if" if="{{_showSearch}}" restamp>
@@ -223,7 +233,12 @@ UVA Library Page Header
          */
         navigation: {
           type: Array,
-          value: [],
+          value: [
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+          ],
         },
         smallScreen: {
           type: Boolean,
@@ -267,6 +282,9 @@ UVA Library Page Header
       openHours: function(ev){
         this.$.hours.positionTarget = ev.target;
         this.$.hours.open();
+      },
+      closeHours: function(){
+        this.$.hours.close();
       },
       _searchSignal: function(e, searchInView, sender){
         this._searchInView = searchInView;
