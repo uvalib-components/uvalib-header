@@ -63,9 +63,9 @@ UVA Library Page Header
       uvalib-logo {
         position: absolute;
         padding: 15px;
-        width: 175px;
-        left: 0;
-        top: 0;
+        width: 125px;
+        left: 15px;
+        top: 15px;
       }
       uvalib-logo[condensed-title] {
         position: absolute;
@@ -183,7 +183,9 @@ UVA Library Page Header
         </app-toolbar>
         <template is="dom-if" if="{{!smallScreen}}" restamp>
           <div sticky id="nav">
-            <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+            <a href="/">
+              <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
+            </a>
             <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>
           </div>
         </template>
