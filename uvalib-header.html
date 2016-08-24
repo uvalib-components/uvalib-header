@@ -1,20 +1,19 @@
 <link rel="import" href="../polymer/polymer.html">
-  <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-  <link rel="import" href="../iron-media-query/iron-media-query.html">
-  <link rel="import" href="../iron-dropdown/iron-dropdown.html">
-  <link rel="import" href="../iron-signals/iron-signals.html">
-  <link rel="import" href="../paper-tabs/paper-tabs.html">
-  <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
-  <link rel="import" href="../app-layout/app-header/app-header.html">
-  <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
-  <link rel="import" href="../uvalib-theme/uvalib-theme.html">
-  <link rel="import" href="../uvalib-theme/uvalib-icons.html">
-  <link rel="import" href="../uvalib-logos/uvalib-logo.html">
-  <link rel="import" href="../uvalib-nav/uvalib-nav.html">
-  <link rel="import" href="../uvalib-button/uvalib-button.html">
-  <link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
-  <link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
-  <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-media-query/iron-media-query.html">
+<link rel="import" href="../iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../iron-signals/iron-signals.html">
+<link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../app-layout/app-header/app-header.html">
+<link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../uvalib-theme/uvalib-common-styles.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uvalib-logos/uvalib-logo.html">
+<link rel="import" href="../uvalib-nav/uvalib-nav.html">
+<link rel="import" href="../uvalib-button/uvalib-button.html">
+<link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
+<link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
+<link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
 
 <!--
 `uvalib-header`
@@ -25,7 +24,7 @@ UVA Library Page Header
 
 <dom-module id="uvalib-header">
   <template>
-    <style>
+    <style is="custom-style" include="uvalib-theme">
       :host {
         display: block;
         margin: 0;
@@ -190,17 +189,8 @@ UVA Library Page Header
             <a href="/">
               <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
             </a>
-            <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"
-<!--
-              navigation='[
-                {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
-                {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
-                {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
-                {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
-              ]'>
--->
+            <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}">
             </uvalib-nav>
-            <!--<uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch"></uvalib-nav>-->
           </div>
         </template>
         <template is="dom-if" if="{{_showSearch}}" restamp>
