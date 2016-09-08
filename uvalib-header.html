@@ -250,6 +250,10 @@ UVA Library Page Header
           value: false,
           reflectToAttribute: true
         },
+        contentHasNoSearchBox: {
+          type: Boolean,
+          value: false
+        },
         _showSearch: {
           type: Boolean,
           value: false,
@@ -285,7 +289,11 @@ UVA Library Page Header
         return inView || !large;
       },
       _triggerSearch: function(){
-        this.fire('iron-signal', {name: "triggersearch"});
+        if (!contentHasNoSearchBox) {
+          this.fire('iron-signal', {name: "triggersearch"});
+        } else {
+          showSearch();
+        }
       },
       _hoursDropdownHalign: function(largeScreen){
         if (largeScreen) return "right";
