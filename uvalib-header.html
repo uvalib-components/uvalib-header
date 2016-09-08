@@ -289,7 +289,7 @@ UVA Library Page Header
         return inView || !large;
       },
       _triggerSearch: function(){
-        if (!contentHasNoSearchBox) {
+        if (!this.contentHasNoSearchBox) {
           this.fire('iron-signal', {name: "triggersearch"});
         } else {
           showSearch();
