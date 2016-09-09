@@ -167,7 +167,7 @@ UVA Library Page Header
     <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
     <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
       <uvalib-skip-nav></uvalib-skip-nav>
-      <app-header condenses reveals fixed effects="waterfall resize-snapped-title">
+      <app-header id="header" condenses reveals fixed effects="waterfall resize-snapped-title">
         <app-toolbar>
           <uvalib-logo main-title stacked$="{{largeScreen}}" text-only reverse hidden$="{{smallScreen}}"></uvalib-logo>
           <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/" hidden$="{{!largeScreen}}">Ask a Librarian</uvalib-button>
@@ -187,7 +187,6 @@ UVA Library Page Header
           <div class="flex" hidden$="{{!smallScreen}}"></div>
           <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
         </app-toolbar>
-<!--        <template is="dom-if" if="{{!smallScreen}}" restamp> -->
           <div sticky id="nav" hidden$="{{smallScreen}}">
             <a href="/">
               <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
@@ -195,7 +194,6 @@ UVA Library Page Header
             <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}">
             </uvalib-nav>
           </div>
-<!--        </template> -->
         <template is="dom-if" if="{{_showSearch}}" restamp>
           <div sticky id="simple-search">
             <uvalib-search-box></uvalib-search-box>
@@ -292,6 +290,12 @@ UVA Library Page Header
       _hoursDropdownHalign: function(largeScreen){
         if (largeScreen) return "right";
         else return "left";
+      },
+      ready: function(){
+        setTimeout(function(){
+          console.log('header hack until https://github.com/PolymerElements/app-layout/issues/320 is resolved');
+          this.$.header.resetLayout();
+        }.bind(this),1000);
       }
     });
   </script>
