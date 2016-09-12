@@ -1,21 +1,21 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-media-query/iron-media-query.html">
-<link rel="import" href="../iron-dropdown/iron-dropdown.html">
-<link rel="import" href="../iron-signals/iron-signals.html">
+<link rel="import" href="../uvalib-theme/uvalib-constants.html">
+<link rel="import" href="../uvalib-theme/uvalib-common-styles.html">
+<link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
+<link rel="import" href="../uvalib-logos/uvalib-logo.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../uvalib-theme/uvalib-icons.html">
-<link rel="import" href="../uvalib-logos/uvalib-logo.html">
-<link rel="import" href="../uvalib-nav/uvalib-nav.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
-<link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html">
-<link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
-<link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
 
-<link rel="import" href="../uvalib-theme/uvalib-constants.html">
-<link rel="import" href="../uvalib-theme/uvalib-common-styles.html">
+<link rel="import" href="../iron-signals/iron-signals.html" async>
+<link rel="import" href="../iron-dropdown/iron-dropdown.html" async>
+<link rel="import" href="../uvalib-nav/uvalib-nav.html" async>
+<link rel="import" href="../uvalib-search-box/uvalib-search-box.html" async>
+<link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html" async>
 
 <!--
 `uvalib-header`
@@ -175,7 +175,7 @@ UVA Library Page Header
           <uvalib-button icon="search" hidden$="{{_showSearchToolItem(_searchInView,largeScreen)}}" on-tap="_triggerSearch">Search</uvalib-button>
           <uvalib-button icon="search" hidden$="{{_showSearchToolItem(contentHasSearchBox,largeScreen)}}" on-tap="showSearch">Search</uvalib-button>
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
-          <iron-dropdown auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
+          <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
             <div class="dropdown-content">
               <uvalib-hours-card all-locations elevation="3">
                 <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
