@@ -187,7 +187,7 @@ UVA Library Page Header
           <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
         </app-toolbar>
           <div sticky id="nav" hidden$="{{smallScreen}}">
-            <a href="/">
+            <a href="//www.library.virginia.edu">
               <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
             </a>
             <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}">
@@ -221,7 +221,7 @@ UVA Library Page Header
         navigation: {
           type: Array,
           value: [
-            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about/"},
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
             {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
             {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
             {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
