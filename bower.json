@@ -26,6 +26,7 @@
   },
   "resolutions": {
     "uvalib-theme": "master",
-    "lodash": "^4.13.1"
+    "lodash": "^4.13.1",
+    "uvalib-button": "master"
   }
 }
