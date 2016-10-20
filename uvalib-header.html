@@ -171,9 +171,9 @@ UVA Library Page Header
           <uvalib-button icon="search" hidden$="{{_showSearchToolItem(contentHasSearchBox,largeScreen)}}" on-tap="showSearch">Search</uvalib-button>
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
           <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
-            <div class="dropdown-content">
+            <div class="dropdown-content flex">
               <uvalib-hours-card all-locations elevation="0">
-                <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
+                <uvalib-button class="card-close flex" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
               </uvalib-hours-card>
             </div>
           </iron-dropdown>
