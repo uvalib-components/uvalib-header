@@ -96,7 +96,7 @@ UVA Library Page Header
         box-shadow: 0px 2px 6px #ccc;
       }
       uvalib-hours-card[all-locations] {
-        min-height: 900px;
+        height: 1100px;
       }
       .flex {
         @apply(--layout-flex);
@@ -171,9 +171,9 @@ UVA Library Page Header
           <uvalib-button icon="search" hidden$="{{_showSearchToolItem(contentHasSearchBox,largeScreen)}}" on-tap="showSearch">Search</uvalib-button>
           <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
           <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
-            <div class="dropdown-content flex">
+            <div class="dropdown-content">
               <uvalib-hours-card all-locations elevation="0">
-                <uvalib-button class="card-close flex" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
+                <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
               </uvalib-hours-card>
             </div>
           </iron-dropdown>
@@ -268,7 +268,6 @@ UVA Library Page Header
 
       openHours: function(ev){
         this.$.hours.positionTarget = ev.target;
-        console.log(this.$.hours);
         this.$.hours.open();
       },
       closeHours: function(){
