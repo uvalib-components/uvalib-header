@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-media-query/iron-media-query.html">
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
+<!--
 <link rel="import" href="../uvalib-logos/uvalib-logo.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -10,6 +11,7 @@
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 <link rel="import" href="../uvalib-nav/uvalib-nav.html">
+-->
 
 <!--
 `uvalib-header`
@@ -138,7 +140,7 @@ UVA Library Page Header
     <app-header id="header" reveals effects="waterfall">
       <div sticky id="nav" hidden$="{{smallScreen}}">
         <a href="//www.library.virginia.edu">
-          <uvalib-logo title stacked$="{{largeScreen}} text-only reverse></uvalib-logo>
+          <uvalib-logo title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
         </a>
         <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}">
         </uvalib-nav>
