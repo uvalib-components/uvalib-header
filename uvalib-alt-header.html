@@ -32,6 +32,43 @@ UVA Library Page Header for Alternate Library sites
         margin: 0;
         z-index: 1000;
       }
+
+      app-header {
+        color: var(--color-white);
+        background-color: var(--color-primary-orange);
+      }
+
+      app-toolbar, h2, div[title] {
+        color: var(--color-white) !important;
+        font-family: var(--font-primary);
+        font-weight: var(--font-headline);
+      }
+
+      app-toolbar[bottom] {
+        background-color: var(--color-primary-orange);
+      }
+
+      app-toolbar a:link, app-toolbar a:visited, app-toolbar a:hover, app-toolbar a:active {
+        color: var(--color-white);
+        text-decoration: none;
+      }
+
+      app-toolbar a {
+        margin: 15px;
+      }
+
+      div[title] {
+        @apply(--font-headline);
+        font-size: 2.5em;
+        line-height: 1.2;
+
+      }
+
+      div[title] div[sub] {
+        @apply(--font-title);
+        color: var(--color-white) !important;
+      }
+
     </style>
 
     <iron-media-query query="{{smallScreenQuery}}" query-matches="{{smallScreen}}"></iron-media-query>
@@ -47,7 +84,7 @@ UVA Library Page Header for Alternate Library sites
       <app-toolbar>
         <div title spacer>
           <div main>{{title}}</div>
-          <div sub>{{subTitle}}&mdash;{{_issue.title}}</div>
+          <div sub>{{subTitle}}</div>
         </div>
       </app-toolbar>
       <app-toolbar></app-toolbar>
@@ -84,87 +121,20 @@ UVA Library Page Header for Alternate Library sites
       is: 'uvalib-alt-header',
       behaviors: [uvabehaviors.layout],
       properties: {
-        /**
-         * Array of JSON items that represent the navigation. Each JSON item has a label property, an icon property, and a url property.
-         */
-        navigation: {
-          type: Array,
-          value: [
-            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
-            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
-            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
-            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
-          ],
+        image: {
+          type: String,
+          observer: 'imageChange'
         },
-        smallScreen: {
-          type: Boolean,
-          notify: true,
-          value: false,
-          reflectToAttribute: true
-        },
-        mediumScreen: {
-          type: Boolean,
-          notify: true,
-          value: false,
-          reflectToAttribute: true
-        },
-        largeScreen: {
-          type: Boolean,
-          notify: true,
-          value: false,
-          reflectToAttribute: true
-        },
-        contentHasSearchBox: {
-          type: Boolean,
-          value: false
-        },
-        _showSearch: {
-          type: Boolean,
-          value: false,
-          reflectToAttribute: true
-        },
-        _searchInView: {
-          type: Boolean,
-          value: true,
-          notify: true
+        title: String,
+        subTitle: String
+      },
+      imageChange: function(){
+        if (this.image && this.$.header && this.$.header.customStyle) {
+          this.$.header.customStyle['--app-header-background-front-layer'] = "background-image: url("+this.image+"); background-position: 50% 10%;";
+          this.$.header.updateStyles();
         }
-      },
-
-      openDrawer: function(ev) {
-        this.fire('open-drawer');
-        console.log('open drawer');
-      },
-
-      showSearch: function(ev) {
-        this._showSearch = (this._showSearch) ? false : true;
-      },
-
-      openHours: function(ev){
-        this.$.hours.positionTarget = ev.target;
-        this.$.hours.open();
-      },
-      closeHours: function(){
-        this.$.hours.close();
-      },
-      _searchSignal: function(e, searchInView, sender){
-        this._searchInView = searchInView;
-      },
-      _showSearchToolItem: function(inView, large) {
-        return inView || !large;
-      },
-      _triggerSearch: function(){
-        this.fire('iron-signal', {name: "triggersearch"});
-      },
-      _hoursDropdownHalign: function(largeScreen){
-        if (largeScreen) return "right";
-        else return "left";
-      },
-      ready: function(){
-        setTimeout(function(){
-          console.log('header hack until https://github.com/PolymerElements/app-layout/issues/320 is resolved');
-          this.$.header.resetLayout();
-        }.bind(this),500);
       }
+
     });
   </script>
 </dom-module>
