@@ -17,7 +17,10 @@
     "uvalib-search-box": "uvalib-components/uvalib-search-box#master",
     "iron-signals": "PolymerElements/iron-signals#^1.0.3",
     "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.2",
-    "uva-brand-style": "uva-components/uva-brand-style#^0.0.1"
+    "uva-brand-style": "uva-components/uva-brand-style#master",
+    "paper-menu-button": "PolymerElements/paper-menu-button#^1.5.2",
+    "paper-menu": "PolymerElements/paper-menu#^1.2.2",
+    "paper-item": "PolymerElements/paper-item#^1.2.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.1.7",
