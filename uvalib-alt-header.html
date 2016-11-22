@@ -64,6 +64,11 @@ UVA Library Page Header for Alternate Library sites
         line-height: 1.2;
       }
 
+      .small-screen div[title] {
+        font-size: 2.5em;
+        line-height: 1;
+      }
+
       div[title] div[sub] {
         @apply(--font-title);
         font-size: .5em;
@@ -76,7 +81,7 @@ UVA Library Page Header for Alternate Library sites
     <iron-media-query query="{{mediumScreenQuery}}" query-matches="{{mediumScreen}}"></iron-media-query>
     <iron-media-query query="{{largeScreenQuery}}" query-matches="{{largeScreen}}"></iron-media-query>
 
-    <app-header-layout>
+    <app-header-layout class$="{{_issmallclass(smallScreen)}}">
     <app-header id="header" shadow condenses fixed effects="blend-background parallax-background resize-snapped-title">
       <app-toolbar></app-toolbar>
       <app-toolbar></app-toolbar>
@@ -148,7 +153,10 @@ UVA Library Page Header for Alternate Library sites
       },
       ready: function(){
         this.imageChange();
-      }
+      },
+      _issmallclass: function(small){
+        if (small) return "small-screen";
+      },
 
     });
   </script>
