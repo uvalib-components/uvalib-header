@@ -37,12 +37,6 @@ UVA Library Page Header for Alternate Library sites
       app-header {
         color: var(--color-white);
         background-color: var(--color-primary-orange);
-/*
-        --app-header-background-front-layer: {
-          background-image: url(https://staffnews.staffweb.lib.virginia.edu/wp-content/uploads/sites/3/2016/11/header_image_rotunda.png);
-          background-position: 50% 10%;
-        }
-  */
       }
 
       app-toolbar, h2, div[title] {
@@ -68,7 +62,6 @@ UVA Library Page Header for Alternate Library sites
         @apply(--font-headline);
         font-size: 2.5em;
         line-height: 1.2;
-
       }
 
       div[title] div[sub] {
@@ -143,6 +136,9 @@ UVA Library Page Header for Alternate Library sites
           this.$.header.customStyle['--app-header-background-front-layer'] = "background-image: url('"+this.image+"'); background-position: 50% 10%;";
           this.async(this.$.header.updateStyles, 100);
         }
+      },
+      ready: function(){
+        this.imageChange();
       }
 
     });
