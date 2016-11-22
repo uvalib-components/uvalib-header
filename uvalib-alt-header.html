@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 
 <link rel="import" href="../app-layout/app-header/app-header.html">
+<link rel="import" href="../app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/resize-snapped-title.html">
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
@@ -36,6 +37,12 @@ UVA Library Page Header for Alternate Library sites
       app-header {
         color: var(--color-white);
         background-color: var(--color-primary-orange);
+/*
+        --app-header-background-front-layer: {
+          background-image: url(https://staffnews.staffweb.lib.virginia.edu/wp-content/uploads/sites/3/2016/11/header_image_rotunda.png);
+          background-position: 50% 10%;
+        }
+  */
       }
 
       app-toolbar, h2, div[title] {
@@ -75,6 +82,7 @@ UVA Library Page Header for Alternate Library sites
     <iron-media-query query="{{mediumScreenQuery}}" query-matches="{{mediumScreen}}"></iron-media-query>
     <iron-media-query query="{{largeScreenQuery}}" query-matches="{{largeScreen}}"></iron-media-query>
 
+    <app-header-layout>
     <app-header id="header" shadow condenses fixed effects="blend-background parallax-background resize-snapped-title">
       <app-toolbar></app-toolbar>
       <app-toolbar></app-toolbar>
@@ -113,6 +121,8 @@ UVA Library Page Header for Alternate Library sites
         </template>
       </app-toolbar>
     </app-header>
+    <content></content>
+  </app-header-layout>
   </template>
 
   <script>
@@ -130,8 +140,8 @@ UVA Library Page Header for Alternate Library sites
       },
       imageChange: function(){
         if (this.image && this.$.header && this.$.header.customStyle) {
-          this.$.header.customStyle['--app-header-background-front-layer'] = "background-image: url("+this.image+"); background-position: 50% 10%;";
-          this.$.header.updateStyles();
+          this.$.header.customStyle['--app-header-background-front-layer'] = "background-image: url('https://staffnews.staffweb.lib.virginia.edu/wp-content/uploads/sites/3/2016/11/header_image_rotunda.png'); background-position: 50% 10%;";
+          this.async(this.$.header.updateStyles, 100);
         }
       }
 
