@@ -60,12 +60,13 @@ UVA Library Page Header for Alternate Library sites
 
       div[title] {
         @apply(--font-headline);
-        font-size: 3.2em;
+        font-size: 3.5em;
         line-height: 1.2;
       }
 
       div[title] div[sub] {
         @apply(--font-title);
+        font-size: .5em;
         color: var(--color-white) !important;
       }
 
@@ -95,7 +96,7 @@ UVA Library Page Header for Alternate Library sites
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
         </template>
         -->
-        <div condensed-title><!--<a href="{{rootPath}}/news/">{{title}}&mdash;{{}}</a>--></div> 
+        <div condensed-title><!--<a href="{{rootPath}}/news/">{{title}}&mdash;{{}}</a>--></div>
         <template is="dom-if" if="[[!smallScreen]]">
           <a href="{{rootPath}}news/{{_issue.slug}}">Home</a>
 <!--
