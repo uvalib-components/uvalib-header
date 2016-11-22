@@ -90,12 +90,15 @@ UVA Library Page Header for Alternate Library sites
       </app-toolbar>
       <app-toolbar></app-toolbar>
       <app-toolbar bottom>
-        <template is="dom-if" if="[[smallScreen]]">
+        <!--
+        <template is="dom-if" if="[[smallScreen]]" >
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
         </template>
-        <div condensed-title><a href="/news/{{_issue.slug}}">{{title}}&mdash;{{_issue.title}}</a></div>
+        -->
+        <div condensed-title><!--<a href="{{rootPath}}/news/">{{title}}&mdash;{{}}</a>--></div> 
         <template is="dom-if" if="[[!smallScreen]]">
-          <a href="/news/{{_issue.slug}}">Home</a>
+          <a href="{{rootPath}}news/{{_issue.slug}}">Home</a>
+<!--
           <template is="dom-if" if="{{_multiple(_issueSlugs)}}">
             <paper-menu-button>
               <paper-button class="dropdown-trigger">
@@ -111,6 +114,7 @@ UVA Library Page Header for Alternate Library sites
           <template is="dom-if" if="{{mailchimpId}}">
             <a href="/subscribe">Subscribe</a>
           </template>
+-->
         </template>
       </app-toolbar>
     </app-header>
@@ -129,7 +133,11 @@ UVA Library Page Header for Alternate Library sites
           observer: 'imageChange'
         },
         title: String,
-        subTitle: String
+        subTitle: String,
+        rootPath: {
+          type: String,
+          value: '/'
+        }
       },
       imageChange: function(){
         if (this.image && this.$.header && this.$.header.customStyle) {
