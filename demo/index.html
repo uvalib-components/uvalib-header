@@ -17,11 +17,20 @@
         }
       })();
     </script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
 
     <link rel="import" href="../../polymer/polymer.html">
     <link rel="import" href="../../iron-media-query/iron-media-query.html">
     <link rel="import" href="../uvalib-header.html">
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
 
+    <link rel="import" href="../../uvalib-logos/uvalib-logo.html">
+    <style is="custom-style" include="uvalib-theme"></style>
   </head>
   <body unresolved>
 
@@ -30,7 +39,7 @@
         <iron-media-query query="(min-width: 601px) and (max-width: 992px)" query-matches="{{mediumScreen}}"></iron-media-query>
         <iron-media-query query="(min-width: 993px)" query-matches="{{largeScreen}}"></iron-media-query>
 
-        <uvalib-header small-screen="{{smallScreen}}" medium-screen="{{mediumScreen}}" large-screen="{{largeScreen}}"
+        <uvalib-header small-screen$="{{smallScreen}}" medium-screen$="{{mediumScreen}}" large-screen$="{{largeScreen}}"
           navigation='[
             {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
             {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
@@ -39,7 +48,10 @@
           ]'
           >
         </uvalib-header>
-        <div style="height: 5000px"></div>
+        <div style="height: 5000px">
+          <h1 style="font-family: SofiaPro;">Foo Bar</h1>
+
+        </div>
     </template>
 
   </body>
