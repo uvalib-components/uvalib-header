@@ -12,6 +12,7 @@
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 <link rel="import" href="../uvalib-logos/uvalib-logo.html">
 <link rel="import" href="../uvalib-nav/uvalib-nav.html">
+<link rel="import" href="../uvalib-search-box/uvalib-search-box.html" >
 
 <!--
 `uvalib-header`
@@ -56,19 +57,48 @@ UVA Library Page Header
       }
 
       .toolbar {
-        @apply(--layout-horizontal);
-        @apply(--layout-center);
         @apply(--layout-flex);
         max-width: 1200px;
         padding: 0 128px 0 128px;
       }
 
+      .large .toolbar {
+        @apply(--layout-center);
+        @apply(--layout-horizontal);
+      }
+
       .medium .toolbar {
+        @apply(--layout-center);
+        @apply(--layout-horizontal);
         padding: 0 16px 0 16px;
       }
 
       .small .toolbar {
         padding: 0 10px 0 10px;
+        @apply(--layout-vertical);
+      }
+
+      .small .toolbar div {
+        @apply(--layout-center);
+        @apply(--layout-horizontal);
+      }
+
+      .small .toolbar div .logo {
+        padding-top: 5px;
+      }
+
+      .small .toolbar div .links {
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+
+      .small .toolbar paper-icon-button {
+        color: var(--color-white);
+      }
+
+      .small .toolbar uvalib-search-box {
+        @apply(--layout-flex);
       }
 
       .toolbar uvalib-button {
@@ -89,7 +119,7 @@ UVA Library Page Header
       }
 
       /* logo constraints */
-      .logo {
+      .medium .logo, .large .logo {
         @apply(--layout-flex);
       }
 
@@ -117,19 +147,30 @@ UVA Library Page Header
     <app-header fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
       <div id="top">
         <div class="toolbar">
-          <div class="logo">
-            <uvalib-logo main-title reverse two-color rotunda-only$="{{smallScreen}}" short-form$="{{mediumScreen}}"></uvalib-logo>
-          </div>
           <template is="dom-if" if="{{!smallScreen}}">
+            <div class="logo">
+              <uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo>
+            </div>
             <uvalib-button id="search" icon="search" on-tap="_triggerSearch">Search</uvalib-button>
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
             <uvalib-button href="http://search.lib.virginia.edu/account/review">Sign In</uvalib-button>
           </template>
           <template is="dom-if" if="{{smallScreen}}">
-            <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
-            <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
-            <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
+            <div class="upper">
+              <div class="logo">
+                <uvalib-logo main-title reverse two-color rotunda-only></uvalib-logo>
+              </div>
+              <div class="links">
+                <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+                <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
+                <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
+              </div>
+            </div>
+            <div class="lower">
+              <paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>
+              <uvalib-search-box use-icon-for-button></uvalib-search-box>
+            </div>
           </template>
         </div>
       </div>
