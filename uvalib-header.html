@@ -30,6 +30,9 @@ UVA Library Page Header
         margin: 0;
         height: 104px;
       }
+      :host([searchframe]){
+        height: 234px;
+      }
       :host([small-screen]){
         height: 86px;
       }
@@ -43,22 +46,43 @@ UVA Library Page Header
         height: 104px;
         z-index: 999999999999;
       }
+      app-header[searchframe] {
+        height: 234px;
+      }
       app-header.small {
         height: 86px;
       }
 
       /* top area of the header */
       #top {
-        @apply(--layout-horizontal);
-        @apply(--layout-center-justified);
+        @apply(--layout-vertical);
+        @apply(--layout-center);
         height: 64px;
         background-color: #002f6c;
+      }
+      [searchframe] #top {
+        height: 194px;
       }
       .small #top {
         height: 86px;
       }
 
+      .searchbar {
+        height: 50px;
+        background-color: white;
+      }
+
+      #searchframe {
+        height: 0;
+      }
+      [searchframe] #searchframe {
+        height: 130px;
+        background-color: white;
+        width: 100%;
+      }
+
       .toolbar {
+        width: 100%;
         @apply(--layout-flex);
         max-width: 1200px;
         padding: 0 128px 0 128px;
@@ -146,8 +170,9 @@ UVA Library Page Header
 
     </style>
 
-    <app-header fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
+    <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}" on-app-header-reset-layout="_scrolltotop">
       <div id="top">
+        <div id="searchframe"></div>
         <div class="toolbar">
           <template is="dom-if" if="{{!smallScreen}}">
             <div class="logo">
@@ -204,10 +229,25 @@ UVA Library Page Header
         largeScreen: {
           type: Boolean,
           value: true
+        },
+        searchframe: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+          observer: '_resetHeaderLayout'
         }
       },
       openSearch: function(){
         this.searchOpen = true;
+      },
+      _resetHeaderLayout: function(){
+        this.fire('iron-resize');
+        //this.$.appheader.resetLayout();
+        //setTimeout(function(){this.$.appheader.scroll(0,0)}.bind(this), 1000);
+      },
+      _scrolltotop: function(){
+        console.log('scrolling to the top');
+        this.$.appheader.scrol(0,0);
       },
       _screenSize: function(smallScreen, mediumScreen, largeScreen){
         var size = (smallScreen)? "small":
@@ -217,7 +257,8 @@ UVA Library Page Header
         return size;
       },
       _triggerSearch: function(){
-        console.log('search has been triggered')
+        console.log('search has been triggered');
+        this.searchframe = true;
         this.fire('iron-signal', {name: "triggersearch"});
       }
     });
