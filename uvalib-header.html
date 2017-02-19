@@ -71,16 +71,7 @@ UVA Library Page Header
         height: 50px;
         background-color: white;
       }
-/*
-      #searchframe {
-        height: 0;
-      }
-      [searchframe] #searchframe {
-        height: 130px;
-        background-color: white;
-        width: 100%;
-      }
-*/
+
       #searchframe {
         height: 130px;
         background-color: white;
@@ -179,7 +170,7 @@ UVA Library Page Header
 
     </style>
 
-    <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}" on-app-header-reset-layout="_scrolltotop">
+    <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
       <div id="top">
         <div id="searchframe" class$="{{_screenReaderSearchFrame(searchframe)}}">
           <uvalib-search-area id="searchbox" advanced-search site-search></uvalib-search-area>
@@ -187,7 +178,7 @@ UVA Library Page Header
         <div class="toolbar">
           <template is="dom-if" if="{{!smallScreen}}">
             <div class="logo">
-              <uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo>
+              <a href="https://library.virginia.edu"><uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo></a>
             </div>
             <uvalib-button id="search" icon="search" on-tap="_triggerSearch">Search</uvalib-button>
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
@@ -262,11 +253,6 @@ UVA Library Page Header
         this.$.appheader.resetLayout();
         setTimeout(function(){this.$.appheader.scroll(0,0)}.bind(this), 50);
       },
-      _scrolltotop: function(){
-        console.log('scrolling to the top');
-        //this.$.appheader.scroll(0,0);
-        //setTimeout(function(){this.$.appheader.scroll(0,0)}.bind(this), 1000);
-      },
       _screenSize: function(smallScreen, mediumScreen, largeScreen){
         var size = (smallScreen)? "small":
                               (mediumScreen)? "medium":
@@ -276,8 +262,12 @@ UVA Library Page Header
       },
       _triggerSearch: function(){
         console.log('search has been triggered');
-        this.searchframe = true;
-        this.fire('iron-signal', {name: "triggersearch"});
+        if (!this.searchframe) {
+          this.searchframe = true;
+//          this.fire('iron-signal', {name: "triggersearch"});
+        } else {
+          this.searchframe = false;
+        }
       }
     });
   </script>
