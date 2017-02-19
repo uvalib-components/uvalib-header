@@ -173,7 +173,7 @@ UVA Library Page Header
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
       <div id="top">
         <div id="searchframe" class$="{{_screenReaderSearchFrame(searchframe)}}">
-          <uvalib-search-area id="searchbox" advanced-search site-search></uvalib-search-area>
+          <uvalib-search-area id="searchbox" advanced-search site-search on-close="_triggerSearch"></uvalib-search-area>
         </div>
         <div class="toolbar">
           <template is="dom-if" if="{{!smallScreen}}">
