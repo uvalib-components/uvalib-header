@@ -2,6 +2,7 @@
 
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-signals/iron-signals.html" >
+<link rel="import" href="../iron-dropdown/iron-dropdown.html">
 
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
@@ -14,6 +15,7 @@
 <link rel="import" href="../uvalib-logos/uvalib-logo.html">
 <link rel="import" href="../uvalib-nav/uvalib-nav.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html" >
+<link rel="import" href="../uvalib-hours-card/uvalib-hours-card.html" >
 
 <!--
 `uvalib-header`
@@ -168,6 +170,15 @@ UVA Library Page Header
         background-color: #00224d;
       }
 
+      .dropdown-content {
+        background-color: white;
+        line-height: 20px;
+        border-radius: 3px;
+        box-shadow: 0px 2px 6px #ccc;
+      }
+      uvalib-hours-card[all-locations] {
+        height: 1100px;
+      }
     </style>
 
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
@@ -183,6 +194,13 @@ UVA Library Page Header
             <uvalib-button id="search" icon="search" on-tap="_triggerSearch">Search</uvalib-button>
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+            <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
+              <div class="dropdown-content">
+                <uvalib-hours-card all-locations elevation="0">
+                  <uvalib-button class="card-close" icon="times" reverse on-tap="closeHours">Close<uvalib-button>
+                </uvalib-hours-card>
+              </div>
+            </iron-dropdown>
             <uvalib-button href="http://search.lib.virginia.edu/account/review">Sign In</uvalib-button>
           </template>
           <template is="dom-if" if="{{smallScreen}}">
@@ -192,6 +210,7 @@ UVA Library Page Header
               </div>
               <div class="links">
                 <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+
                 <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
                 <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
               </div>
@@ -242,6 +261,13 @@ UVA Library Page Header
       openSearch: function(){
         this.searchOpen = true;
       },
+      openHours: function(ev){
+        this.querySelector('#hours').positionTarget = ev.target;
+        this.querySelector('#hours').open();
+      },
+      closeHours: function(){
+        this.querySelector('#hours').close();
+      },
       _screenReaderSearchFrame: function(value) {
         if (value) {
           return "";
@@ -268,7 +294,11 @@ UVA Library Page Header
         } else {
           this.searchframe = false;
         }
-      }
+      },
+      _hoursDropdownHalign: function(largeScreen){
+        if (largeScreen) return "right";
+        else return "left";
+      },
     });
   </script>
 </dom-module>
