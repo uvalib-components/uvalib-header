@@ -191,7 +191,9 @@ UVA Library Page Header
             <div class="logo">
               <a href="https://library.virginia.edu"><uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo></a>
             </div>
-            <uvalib-button id="search" icon="search" on-tap="_triggerSearch">Search</uvalib-button>
+            <uvalib-button id="search" icon="search" on-tap="_triggerSearch" hidden$="{{b}}">Search</uvalib-button>
+            <uvalib-search-box use-icon-for-button hidden$="{{!b}}"></uvalib-search-box>
+
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
             <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
@@ -256,6 +258,10 @@ UVA Library Page Header
           value: false,
           reflectToAttribute: true,
           observer: '_resetHeaderLayout'
+        },
+        b: {
+          type: Boolean,
+          value: false
         }
       },
       openSearch: function(){
