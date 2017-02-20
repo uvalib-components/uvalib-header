@@ -132,7 +132,7 @@ UVA Library Page Header
       .toolbar uvalib-button {
         padding: 0 10px 0 10px;
         --uvalib-button: {
-          font-family: SofiaPro;
+          font-family: var(--font-primary);
           font-size: 14px;
           font-weight: bold;
           font-style: normal;
@@ -168,6 +168,27 @@ UVA Library Page Header
       #bottom {
         height: 40px;
         background-color: #00224d;
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+      }
+
+      #bottom nav {
+        @apply(--layout-flex);
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--layout-end-justified);
+        max-width: var(--uvalib-display-width-max);
+      }
+
+      #bottom nav a {
+        font-size: 18px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 1.3px;
+        color: #ffffff;
+        margin-left: 70px;
       }
 
       .dropdown-content {
@@ -178,6 +199,11 @@ UVA Library Page Header
       }
       uvalib-hours-card[all-locations] {
         height: 1100px;
+      }
+
+      #top, #bottom {
+        padding-left: 10px;
+        padding-right: 10px;
       }
     </style>
 
@@ -227,6 +253,12 @@ UVA Library Page Header
 
       <div id="bottom" sticky hidden$="{{smallScreen}}">
 
+        <nav>
+          <template is="dom-repeat" items="{{navigation}}">
+            <a href="{{item.url}}">{{item.label}}</a>
+          </template>
+        </nav>
+
       </div>
     </app-header>
 
@@ -236,6 +268,18 @@ UVA Library Page Header
     Polymer({
       is: 'uvalib-header',
       properties: {
+        /**
+         * Array of JSON items that represent the navigation. Each JSON item has a label property, an icon property, and a url property.
+         */
+        navigation: {
+          type: Array,
+          value: [
+            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+          ],
+        },
         searchOpen: {
           type:Boolean,
           reflectToAttribute: true,
