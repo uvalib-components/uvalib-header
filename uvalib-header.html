@@ -77,7 +77,7 @@ UVA Library Page Header
       #searchframe {
         height: 130px;
         background-color: white;
-        width: 100%;
+        width: 105%;
         overflow: hidden;
         z-index: 1;
       }
@@ -210,7 +210,7 @@ UVA Library Page Header
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
       <div id="top">
         <div id="searchframe" class$="{{_screenReaderSearchFrame(searchframe)}}">
-          <uvalib-search-area id="searchbox" advanced-search site-search on-close="_triggerSearch"></uvalib-search-area>
+          <uvalib-search-area id="searchbox" small$="{{mediumScreen}}" advanced-search site-search on-close="_triggerSearch"></uvalib-search-area>
         </div>
         <div class="toolbar">
           <template is="dom-if" if="{{!smallScreen}}">
@@ -274,10 +274,10 @@ UVA Library Page Header
         navigation: {
           type: Array,
           value: [
-            {"label": "About", "icon": "university", "url": "//www.library.virginia.edu/about-uva-library/"},
-            {"label": "Research", "icon": "graduation-cap", "url": "//www.library.virginia.edu/research/"},
-            {"label": "Collections", "icon": "book", "url": "//www.library.virginia.edu/collections/"},
-            {"label": "Services", "icon": "cloud", "url": "//www.library.virginia.edu/services/"}
+            {"label": "About", "icon": "university", "url": "http://www.library.virginia.edu/about-uva-library/"},
+            {"label": "Research", "icon": "graduation-cap", "url": "http://www.library.virginia.edu/research/"},
+            {"label": "Collections", "icon": "book", "url": "http://www.library.virginia.edu/collections/"},
+            {"label": "Services", "icon": "cloud", "url": "http://www.library.virginia.edu/services/"}
           ],
         },
         searchOpen: {
