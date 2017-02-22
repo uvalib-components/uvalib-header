@@ -308,6 +308,10 @@ UVA Library Page Header
           value: false
         }
       },
+      openDrawer: function(ev) {
+        this.fire('open-drawer');
+        console.log('open drawer');
+      },
       openSearch: function(){
         this.searchOpen = true;
       },
