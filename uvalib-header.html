@@ -209,6 +209,10 @@ UVA Library Page Header
       [hidden] {
         display: none;
       }
+
+      uvalib-hours-card uvalib-button {
+        color: #000000 !important;
+      }
     </style>
 
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
@@ -307,10 +311,6 @@ UVA Library Page Header
           reflectToAttribute: true,
           observer: '_resetHeaderLayout'
         },
-        b: {
-          type: Boolean,
-          value: false
-        }
       },
       openDrawer: function(ev) {
         this.fire('open-drawer');
@@ -320,11 +320,12 @@ UVA Library Page Header
         this.searchOpen = true;
       },
       openHours: function(ev){
-        this.$.hours.positionTarget = ev.target;
-        this.$.hours.open();
+        var hours = this.$.appheader.querySelector('#hours');
+        hours.positionTarget = ev.target;
+        hours.open();
       },
       closeHours: function(){
-        this.$.hours.close();
+        this.$.appheader.querySelector('#hours').close();
       },
       _screenReaderSearchFrame: function(value) {
         if (value) {
