@@ -320,11 +320,11 @@ UVA Library Page Header
         this.searchOpen = true;
       },
       openHours: function(ev){
-        this.querySelector('#hours').positionTarget = ev.target;
-        this.querySelector('#hours').open();
+        this.$.hours.positionTarget = ev.target;
+        this.$.hours.open();
       },
       closeHours: function(){
-        this.querySelector('#hours').close();
+        this.$.hours.close();
       },
       _screenReaderSearchFrame: function(value) {
         if (value) {
