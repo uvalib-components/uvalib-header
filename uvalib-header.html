@@ -205,6 +205,10 @@ UVA Library Page Header
         padding-left: 10px;
         padding-right: 10px;
       }
+
+      [hidden] {
+        display: none;
+      }
     </style>
 
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
@@ -217,8 +221,8 @@ UVA Library Page Header
             <div class="logo">
               <a href="/uvalib-page/components/uvalib-page/demo/"><uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo></a>
             </div>
-            <uvalib-button id="search" icon="search" on-tap="_triggerSearch" hidden$="{{b}}">Search</uvalib-button>
-            <uvalib-search-box use-icon-for-button hidden$="{{!b}}"></uvalib-search-box>
+            <!--<uvalib-button id="search" icon="search" on-tap="_triggerSearch" hidden$="{{b}}">Search</uvalib-button>-->
+            <uvalib-search-box use-icon-for-button on-focus="_triggerSearch" hidden$="{{searchframe}}"></uvalib-search-box>
 
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
@@ -344,6 +348,7 @@ UVA Library Page Header
         console.log('search has been triggered');
         if (!this.searchframe) {
           this.searchframe = true;
+          this.$.searchbox.focus();
 //          this.fire('iron-signal', {name: "triggersearch"});
         } else {
           this.searchframe = false;
