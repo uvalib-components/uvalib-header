@@ -213,6 +213,13 @@ UVA Library Page Header
       uvalib-hours-card uvalib-button {
         color: #000000 !important;
       }
+
+      .lower uvalib-button {
+        --uvalib-button-bkgrd-color: #00224d;
+        --uvalib-button: {
+          text-transform: uppercase;
+        }
+      }
     </style>
 
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
@@ -252,7 +259,8 @@ UVA Library Page Header
               </div>
             </div>
             <div class="lower">
-              <paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>
+              <!--<paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>-->
+              <uvalib-button class="menubutton" raised>Menu</uvalib-button>
               <uvalib-search-box use-icon-for-button></uvalib-search-box>
             </div>
           </template>
