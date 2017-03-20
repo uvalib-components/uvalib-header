@@ -198,7 +198,7 @@ UVA Library Page Header
         box-shadow: 0px 2px 6px #ccc;
       }
       uvalib-hours-card[all-locations] {
-        height: 10240px;
+        height: 1024px;
       }
 
       #top, #bottom {
@@ -243,7 +243,7 @@ UVA Library Page Header
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
             <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
               <div class="dropdown-content">
-                <uvalib-hours-card all-locations elevation="0">
+                <uvalib-hours-card close-icon all-locations elevation="0" on-close="closeHours">
                   <uvalib-button class="fullhoursbutton" href="http://cal.lib.virginia.edu/hours/">View all hours</uvalib-button>
                 </uvalib-hours-card>
               </div>
