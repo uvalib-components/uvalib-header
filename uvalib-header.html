@@ -260,7 +260,7 @@ UVA Library Page Header
             </div>
             <div class="lower">
               <!--<paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>-->
-              <uvalib-button class="menubutton" raised>Menu</uvalib-button>
+              <uvalib-button class="menubutton" raised on-tap="_openDrawer">Menu</uvalib-button>
               <uvalib-search-box use-icon-for-button></uvalib-search-box>
             </div>
           </template>
@@ -320,7 +320,7 @@ UVA Library Page Header
           observer: '_resetHeaderLayout'
         },
       },
-      openDrawer: function(ev) {
+      _openDrawer: function(ev) {
         this.fire('open-drawer');
         console.log('open drawer');
       },
