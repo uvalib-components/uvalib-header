@@ -220,6 +220,10 @@ UVA Library Page Header
           text-transform: uppercase;
         }
       }
+
+      #bottom[hidden] {
+        display: none !important;
+      }
     </style>
 
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
