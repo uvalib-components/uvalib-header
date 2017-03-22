@@ -229,7 +229,7 @@ UVA Library Page Header
     <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
       <div id="top">
         <div id="searchframe" class$="{{_screenReaderSearchFrame(searchframe)}}">
-          <uvalib-search-area id="searchbox" small$="{{mediumScreen}}" advanced-search site-search on-close="_triggerSearch"></uvalib-search-area>
+          <uvalib-search-area id="searchbox" small$="{{mediumScreen}}" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
         </div>
         <div class="toolbar">
           <template is="dom-if" if="{{!smallScreen}}">
@@ -362,10 +362,10 @@ UVA Library Page Header
         if (!this.searchframe) {
           this.searchframe = true;
           this.$.searchbox.focus();
-//          this.fire('iron-signal', {name: "triggersearch"});
-        } else {
-          this.searchframe = false;
-        }
+        } 
+      },
+      _closeSearch: function(){
+        if (this.searchframe) this.searchframe = false;
       },
       _hoursDropdownHalign: function(largeScreen){
         if (largeScreen) return "right";
