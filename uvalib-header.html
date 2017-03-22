@@ -201,6 +201,7 @@ UVA Library Page Header
         height: 1024px;
       }
 
+
       #top, #bottom {
         padding-left: 10px;
         padding-right: 10px;
@@ -232,6 +233,11 @@ UVA Library Page Header
           <uvalib-search-area id="searchbox" small$="{{mediumScreen}}" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
         </div>
         <div class="toolbar">
+          <iron-dropdown style="display:none" id="hours" dynamic-align>
+            <uvalib-hours-card class="dropdown-content" close-icon all-locations elevation="0" on-close="closeHours">
+              <uvalib-button class="fullhoursbutton" href="http://cal.lib.virginia.edu/hours/">View all hours</uvalib-button>
+            </uvalib-hours-card>
+          </iron-dropdown>
           <template is="dom-if" if="{{!smallScreen}}">
             <div class="logo">
               <a href="/"><uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo></a>
@@ -241,13 +247,7 @@ UVA Library Page Header
 
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
-            <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
-              <div class="dropdown-content">
-                <uvalib-hours-card close-icon all-locations elevation="0" on-close="closeHours">
-                  <uvalib-button class="fullhoursbutton" href="http://cal.lib.virginia.edu/hours/">View all hours</uvalib-button>
-                </uvalib-hours-card>
-              </div>
-            </iron-dropdown>
+
             <uvalib-button href="http://search.lib.virginia.edu/account/review">Sign In</uvalib-button>
           </template>
           <template is="dom-if" if="{{smallScreen}}">
@@ -362,7 +362,7 @@ UVA Library Page Header
         if (!this.searchframe) {
           this.searchframe = true;
           this.$.searchbox.focus();
-        } 
+        }
       },
       _closeSearch: function(){
         if (this.searchframe) this.searchframe = false;
