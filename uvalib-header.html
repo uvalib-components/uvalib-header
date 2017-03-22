@@ -51,6 +51,7 @@ UVA Library Page Header
       app-header[searchframe] {
         height: 234px;
       }
+
       app-header.small {
         height: 86px;
       }
@@ -65,6 +66,7 @@ UVA Library Page Header
       [searchframe] #top {
         height: 194px;
       }
+
       .small #top {
         height: 86px;
       }
@@ -232,12 +234,14 @@ UVA Library Page Header
         <div id="searchframe" class$="[[_screenReaderSearchFrame(searchframe)]]">
           <uvalib-search-area id="searchbox" small$="[[mediumScreen]]" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
         </div>
-        <div class="toolbar">
-          <iron-dropdown style="display:none" id="hours" dynamic-align>
-            <uvalib-hours-card class="dropdown-content" close-icon all-locations elevation="0" on-close="closeHours">
+        <iron-dropdown style="display:none" id="hours" dynamic-align>
+          <div class="dropdown-content">
+            <uvalib-hours-card close-icon all-locations elevation="0" on-close="closeHours">
               <uvalib-button class="fullhoursbutton" href="http://cal.lib.virginia.edu/hours/">View all hours</uvalib-button>
             </uvalib-hours-card>
-          </iron-dropdown>
+          </div>
+        </iron-dropdown>
+        <div class="toolbar">
           <template is="dom-if" if="[[!smallScreen]]">
             <div class="logo">
               <a href="/"><uvalib-logo main-title reverse two-color short-form$="[[mediumScreen]]"></uvalib-logo></a>
