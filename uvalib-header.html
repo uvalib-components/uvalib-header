@@ -227,10 +227,10 @@ UVA Library Page Header
       }
     </style>
 
-    <app-header id="appheader" searchframe$="{{searchframe}}" fixed condenses reveals effects="waterfall" class$="{{_screenSize(smallScreen, mediumScreen, largeScreen)}}">
+    <app-header id="appheader" searchframe$="[[searchframe]]" fixed condenses reveals effects="waterfall" class$="[[_screenSize(smallScreen, mediumScreen, largeScreen)]]">
       <div id="top">
-        <div id="searchframe" class$="{{_screenReaderSearchFrame(searchframe)}}">
-          <uvalib-search-area id="searchbox" small$="{{mediumScreen}}" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
+        <div id="searchframe" class$="[[_screenReaderSearchFrame(searchframe)]]">
+          <uvalib-search-area id="searchbox" small$="[[mediumScreen]]" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
         </div>
         <div class="toolbar">
           <iron-dropdown style="display:none" id="hours" dynamic-align>
@@ -238,19 +238,19 @@ UVA Library Page Header
               <uvalib-button class="fullhoursbutton" href="http://cal.lib.virginia.edu/hours/">View all hours</uvalib-button>
             </uvalib-hours-card>
           </iron-dropdown>
-          <template is="dom-if" if="{{!smallScreen}}">
+          <template is="dom-if" if="[[!smallScreen]]">
             <div class="logo">
-              <a href="/"><uvalib-logo main-title reverse two-color short-form$="{{mediumScreen}}"></uvalib-logo></a>
+              <a href="/"><uvalib-logo main-title reverse two-color short-form$="[[mediumScreen]]"></uvalib-logo></a>
             </div>
             <!--<uvalib-button id="search" icon="search" on-tap="_triggerSearch" hidden$="{{b}}">Search</uvalib-button>-->
-            <uvalib-search-box use-icon-for-button on-focus="_triggerSearch" hidden$="{{searchframe}}"></uvalib-search-box>
+            <uvalib-search-box use-icon-for-button on-focus="_triggerSearch" hidden$="[[searchframe]]"></uvalib-search-box>
 
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
             <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
 
             <uvalib-button href="http://search.lib.virginia.edu/account/review">Sign In</uvalib-button>
           </template>
-          <template is="dom-if" if="{{smallScreen}}">
+          <template is="dom-if" if="[[smallScreen]]">
             <div class="upper">
               <div class="logo">
                 <uvalib-logo main-title reverse two-color rotunda-only></uvalib-logo>
@@ -271,11 +271,11 @@ UVA Library Page Header
         </div>
       </div>
 
-      <div id="bottom" sticky hidden$="{{smallScreen}}">
+      <div id="bottom" sticky hidden$="[[smallScreen]]">
 
         <nav>
-          <template is="dom-repeat" items="{{navigation}}">
-            <a href="{{item.url}}">{{item.label}}</a>
+          <template is="dom-repeat" items="[[navigation]]">
+            <a href="[[item.url]]">[[item.label]]</a>
           </template>
         </nav>
 
