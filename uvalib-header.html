@@ -2,7 +2,9 @@
 
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-signals/iron-signals.html" >
+<!--
 <link rel="import" href="../iron-dropdown/iron-dropdown.html">
+-->
 
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
@@ -249,6 +251,7 @@ UVA Library Page Header
         <div id="searchframe" class$="[[_screenReaderSearchFrame(searchframe)]]">
           <uvalib-search-area id="searchbox" small$="[[mediumScreen]]" advanced-search site-search on-close="_closeSearch"></uvalib-search-area>
         </div>
+        <!--
         <iron-dropdown style="display:none" id="hours" dynamic-align>
           <div class="dropdown-content">
             <uvalib-hours-card close-icon all-locations elevation="0" on-close="closeHours">
@@ -256,6 +259,7 @@ UVA Library Page Header
             </uvalib-hours-card>
           </div>
         </iron-dropdown>
+      -->
         <div class="toolbar">
           <template is="dom-if" if="[[!smallScreen]]">
             <div class="logo">
@@ -265,7 +269,8 @@ UVA Library Page Header
             <uvalib-search-box use-icon-for-button on-focus="_triggerSearch" hidden$="[[searchframe]]"></uvalib-search-box>
 
             <uvalib-button href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
-            <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
+            <!--<uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>-->
+            <uvalib-button href="http://cal.lib.virginia.edu/hours/">Hours</uvalib-button>
 
             <uvalib-button href="http://search.lib.virginia.edu/account/review">Sign In</uvalib-button>
           </template>
