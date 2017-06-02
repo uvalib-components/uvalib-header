@@ -31,6 +31,9 @@ UVA Library Page Header
         z-index: 1000;
       }
 
+      [hidden] { 
+        display: none;
+      }
 
       app-header {
         z-index: 1000;
@@ -188,6 +191,7 @@ UVA Library Page Header
         <div class="flex" hidden$="{{!smallScreen}}"></div>
         <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
       </app-toolbar>
+      <template is="dom-if" if="{{!smallScreen}}" restamp>
         <div sticky id="nav" hidden$="{{smallScreen}}">
           <a href="//www.library.virginia.edu">
             <uvalib-logo condensed-title stacked$="{{largeScreen}}" text-only reverse></uvalib-logo>
@@ -195,11 +199,13 @@ UVA Library Page Header
           <uvalib-nav include-search$="{{mediumScreen}}" on-show-search="showSearch" navigation="{{navigation}}">
           </uvalib-nav>
         </div>
+<!--
       <template is="dom-if" if="{{_showSearch}}" restamp>
         <div sticky id="simple-search">
           <uvalib-search-box></uvalib-search-box>
         </div>
       </template>
+-->
       <template is="dom-if" if="{{smallScreen}}" restamp>
         <div sticky id="nav">
           <paper-icon-button icon="bars" on-tap="openDrawer"></paper-icon-button>
