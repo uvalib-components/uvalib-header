@@ -162,6 +162,12 @@ UVA Library Page Header
         #nav uvalib-search-box {
           @apply(--layout-flex);
         }
+
+      }
+
+      #simple-search {
+        background-color: #002F6C;
+        padding: 10px;
       }
 
     </style>
@@ -201,11 +207,11 @@ UVA Library Page Header
         </div>
       </template>
 
-      <template is="dom-if" if="{{_showSearch}}" restamp>
-        <div sticky id="simple-search">
-          <uvalib-search-box></uvalib-search-box>
-        </div>
-      </template>
+
+      <div sticky id="simple-search" hidden$="[[!_showSearch]]">
+        <uvalib-search-box id="tabletSearch"></uvalib-search-box>
+      </div>
+
 
       <template is="dom-if" if="{{smallScreen}}" restamp>
         <div sticky id="nav">
@@ -275,6 +281,7 @@ UVA Library Page Header
 
       showSearch: function(ev) {
         this._showSearch = (this._showSearch) ? false : true;
+        if (this.$.tabletSearch) this.$.tabletSearch.focus();
       },
 
       openHours: function(ev){
