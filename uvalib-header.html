@@ -183,7 +183,8 @@ UVA Library Page Header
         <uvalib-button icon="search" hidden$="{{_showSearchToolItem(_searchInView,largeScreen)}}" on-tap="_triggerSearch">Search</uvalib-button>
         <uvalib-button icon="search" hidden$="{{_showSearchToolItem(contentHasSearchBox,largeScreen)}}" on-tap="showSearch">Search</uvalib-button>
 -->
-        <uvalib-button icon="search" on-tap="showSearch">Search</uvalib-button>
+        <uvalib-button icon="search" hidden$="[[!largeScreen]]" on-tap="_triggerSearch">Search</uvalib-button>
+        <uvalib-button icon="search" hidden$="[[!mediumScreen]]" on-tap="showSearch">Search</uvalib-button>
         <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
         <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="{{_hoursDropdownHalign(largeScreen)}}" vertical-align="top" no-overlap>
           <div class="dropdown-content">
@@ -299,6 +300,7 @@ UVA Library Page Header
       },
       _triggerSearch: function(){
         this.fire('iron-signal', {name: "triggersearch"});
+        console.log('trigger search');
       },
       _hoursDropdownHalign: function(largeScreen){
         if (largeScreen) return "right";
