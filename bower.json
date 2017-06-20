@@ -3,7 +3,7 @@
   "description": "UVA Library Page Header",
   "main": "uvalib-header.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#latest"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master"
   },
   "resolutions": {
     "uvalib-elements": "master",
@@ -20,7 +20,7 @@
     "uvalib-logos": "master",
     "uvalib-button": "master",
     "uvalib-banner": "master",
-    "uvalib-alerts": "58d0433b43",
+    "uvalib-alerts": "master",
     "uvalib-liame": "master",
     "uvalib-skip-nav": "master",
     "uvalib-search-box": "master",
@@ -29,6 +29,8 @@
     "app-storage": "^0.10.0",
     "iron-icons": "^1.2.1",
     "lodash": "^4.17.4",
-    "uvalib-social-links": "master"
+    "uvalib-social-links": "master",
+    "uva-footer": "master",
+    "uvalib-images": "master"
   }
 }
