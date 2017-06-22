@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../uvalib-theme/uvalib-theme.html">
 <link rel="import" href="../uvalib-skip-nav/uvalib-skip-nav.html">
@@ -9,7 +10,6 @@
 <link rel="import" href="../app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
 <link rel="import" href="../uvalib-nav/uvalib-nav.html">
-<!-- these can wait -->
 <link rel="import" href="../iron-signals/iron-signals.html" >
 <link rel="import" href="../iron-dropdown/iron-dropdown.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html" >
@@ -27,8 +27,11 @@ UVA Library Page Header
     <style is="custom-style" include="uvalib-theme">
       :host {
         display: block;
+        position: relative;
+        @apply(--layout-vertical);
+        height: 118px;
         margin: 0;
-        z-index: 1000;
+        z-index: 100000000000;
       }
 
       [hidden] {
@@ -52,9 +55,6 @@ UVA Library Page Header
         --paper-icon-button-ink-color: white;
       }
       app-toolbar {
-        /*
-        margin-bottom: 31px;
-        */
         height: 39px;
       }
       #nav {
