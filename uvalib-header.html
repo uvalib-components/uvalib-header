@@ -200,7 +200,7 @@ UVA Library Page Header
       </app-toolbar>
       <template is="dom-if" if="[[!smallScreen]]" restamp>
         <div sticky id="nav" hidden$="[[smallScreen]]">
-          <a href="//www.library.virginia.edu">
+          <a href="//www.library.virginia.edu" aria-label="link home">
             <uvalib-logo condensed-title stacked$="[[largeScreen]]" text-only reverse></uvalib-logo>
           </a>
           <uvalib-nav include-search$="[[mediumScreen]]" on-show-search="showSearch" navigation="[[navigation]]">
