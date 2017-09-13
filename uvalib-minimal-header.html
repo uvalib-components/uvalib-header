@@ -150,7 +150,6 @@ UVA Library Page Header
     <app-header id="header" condenses reveals fixed effects="waterfall resize-snapped-title">
       <app-toolbar>
         <uvalib-logo main-title stacked$="[[largeScreen]]" text-only reverse hidden$="[[smallScreen]]"></uvalib-logo>
-        <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/" hidden$="[[!largeScreen]]">Ask a Librarian</uvalib-button>
         <div class="flex" hidden$="[[smallScreen]]"></div>
         <uvalib-button icon="angle-down" reverse on-tap="openHours">Hours</uvalib-button>
         <iron-dropdown style="display:none" auto-fit-on-attach id="hours" horizontal-align="[[_hoursDropdownHalign(largeScreen)]]" vertical-align="top" no-overlap>
@@ -161,7 +160,7 @@ UVA Library Page Header
           </div>
         </iron-dropdown>
         <div class="flex" hidden$="[[!smallScreen]]"></div>
-        <uvalib-button href="http://www.library.virginia.edu/askalibrarian/" hidden$="[[largeScreen]]">Ask a Librarian</uvalib-button>
+        <uvalib-button icon="comments" href="http://www.library.virginia.edu/askalibrarian/">Ask a Librarian</uvalib-button>
         <div class="flex" hidden$="[[!smallScreen]]"></div>
         <uvalib-button href="http://search.lib.virginia.edu/account/review">Account</uvalib-button>
       </app-toolbar>
