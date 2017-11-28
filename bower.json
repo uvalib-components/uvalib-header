@@ -1,6 +1,6 @@
 {
   "name": "uvalib-header",
-  "description": "UVA Library Page Header",
+  "description": "Header element for the UVA Library web apps",
   "main": "uvalib-header.html",
   "dependencies": {
     "uvalib-elements": "uvalib-components/uvalib-elements#master"
