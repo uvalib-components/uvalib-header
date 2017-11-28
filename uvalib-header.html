@@ -5,9 +5,11 @@
     <style>
       :host {
         display: block;
+        height: 118px;
+        background-color: var(--color-primary-color);
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <!-- markup here -->
   </template>
 
   <script>
@@ -23,9 +25,13 @@
       static get is() { return 'uvalib-header'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'uvalib-header'
+          smallScreen: {
+            type: Boolean,
+            value: false
+          },
+          mediumScreen: {
+            type: Boolean,
+            value: false
           }
         };
       }

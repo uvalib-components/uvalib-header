@@ -8,23 +8,23 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
     <link rel="import" href="../uvalib-header.html">
 
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
+      <style is="custom-style" include="uvalib-theme">
+        body {
+          margin: 0;
+          height: 100vh;
+        }
+        .content {
+          height: 5000px;
+        }
       </style>
     </custom-style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic uvalib-header demo</h3>
-      <demo-snippet>
-        <template>
-          <uvalib-header></uvalib-header>
-        </template>
-      </demo-snippet>
-    </div>
+    <uvalib-header></uvalib-header>
+    <div class="content"></div>
   </body>
 </html>
