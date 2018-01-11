@@ -1,39 +1,264 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
+<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<link rel="import" href="../app-layout/app-header/app-header.html">
+<link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../uvalib-logos/uvalib-logos.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../iron-form/iron-form.html">
+<link rel="import" href="../uvalib-button/uvalib-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../uvalib-theme/uvalib-icons.html">
+<link rel="import" href="../uva-models/uva-library-alerts.html">
+<link rel="import" href="../paper-badge/paper-badge.html">
 
 <dom-module id="uvalib-header">
   <template>
-    <style>
-      :host {
-        display: block;
-        height: 118px;
-        background-color: var(--color-primary-color);
-      }
-    </style>
-    <!-- markup here -->
+    <custom-style>
+      <style include="uvalib-theme">
+        :host {
+          display: block;
+          position: relative;
+          margin: 0;
+/*          z-index: 100; */
+          background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+          --my-sm-height: var(--uvalib-header-height-sm, 128px);
+          --my-md-height: var(--uvalib-header-height-md, 156px);
+          --my-lg-height: var(--uvalib-header-height-lg, 200px);
+          --my-nav-height: var(--uvalib-header-navbar-height, 66px);
+        }
+        :host([small-screen]), :host([small-screen]) app-header {
+          height: var(--my-sm-height);
+        }
+        :host([medium-screen]), :host([medium-screen]) app-header {
+          height: var(--my-md-height);
+        }
+        :host([large-screen]), :host([large-screen]) app-header {
+          height: var(--my-lg-height);
+        }
+        app-header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          color: var(--color-white);
+          background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+        }
+        /* a bit of a hack to support flex like layout in the app-header */
+        :host([large-screen]) div { height: calc(var(--my-lg-height) - var(--my-nav-height)); }
+        :host([medium-screen]) div { height: calc(var(--my-md-height) - var(--my-nav-height)); }
+        :host([small-screen]) div { height: calc(var(--my-sm-height) - var(--my-nav-height)); }
+        :host([large-screen]) #bottom { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
+        #bottom { height: var(--my-nav-height); }
+
+        #top {
+          @apply --layout-horizontal;
+          @apply --layout-center-justified;
+        }
+        #top > div {
+          @apply --layout-flex;
+          max-width: var(--uvalib-display-width-max);
+          @apply --layout-horizontal;
+        }
+        #top #search, #top #menu {
+          @apply --layout-flex;
+          text-align: right;
+        }
+        :host([large-screen]) #menu { display:none; }
+        :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
+        :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
+
+        a, a:link, a:visited {
+          color: inherit;
+        }
+
+        nav a {
+          padding: 10px;
+        }
+        #bottom nav {
+          height: 100%;
+          @apply(--layout-horizontal);
+          @apply(--layout-center);
+          @apply(--layout-justified);
+        }
+        :host([large-screen]) #bottom nav {
+          @apply(--layout-end-justified);
+        }
+
+        .search-field {
+          margin: 0px;
+          padding: 0px;
+          display: inline-block;
+          width: 91%;
+          max-width: 500px;
+          --paper-input-container: {
+            background-color: white;
+            color: var(--color-text-gray);
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            line-height: 30px;
+          }
+          --paper-input-container-underline: {
+            display: none;
+          }
+          --paper-input-container-underline-focus: {
+            display: none;
+          }
+          --paper-input-container-underline-disabled: {
+            display: none;
+          }
+          --paper-input-container-input: {
+            text-align: left;
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+        }
+        .searchbox {
+          margin-left: auto;
+          margin-right: auto;
+          width: 94%;
+          @apply(--layout-horizontal);
+          @apply(--layout-end-justified);
+        }
+        uvalib-button {
+          color: var(--color-white);
+        }
+        #menuDialog {
+          position: fixed;
+          margin: 0;
+          top:0;
+          width: 100%;
+          height: 500px;
+          overflow: auto;
+          background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+        }
+        #menuContainer {
+          @apply --layout-vertical;
+        }
+        #menuTop {
+          @apply --layout-horizontal;
+        }
+        .spacer {
+          @apply --layout-flex;
+        }
+      </style>
+
+    </custom-style>
+
+    <uva-library-alerts alerts="{{_alerts}}" unseen-count="{{_alertCount}}"></uva-library-alerts>
+    <paper-dialog id="menuDialog" modal always-on-top>
+      <div id="menuContainer">
+        <div id="menuTop">
+          <uvalib-logos stacked text-only reverse></uvalib-logos>
+          <div class="spacer"></div>
+          <uvalib-button dialog-dismiss>Close x</uvalib-button>
+        </div>
+        <h2>Custom Size &amp; Position</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </paper-dialog>
+    <app-header id="header" condenses reveals fixed effects="waterfall">
+      <div id="top">
+        <div>
+          <div id="logo">
+            <uvalib-logos stacked text-only reverse></uvalib-logos>
+          </div>
+          <div id="menu">
+            <uvalib-button icon="search" reverse outline on-click="_openMenu">Menu</uvalib-button>
+          </div>
+          <div id="search">
+            <nav>
+              <a href="https://search.lib.virginia.edu/advanced?catalog_select=catalog">Catalog Advanced &gt;</a>
+              <a href="https://search.lib.virginia.edu/articles/advanced?catalog_select=articles">Article Advanced &gt;</a>
+              <a href="/search">Site Search &gt;</a>
+            </nav>
+            <form is="iron-form" method="get" action="[[_virgoSearchUrl]]" id="virgoSearchForm">
+              <input type="hidden" name="catalog_select" value="all">
+              <input type="hidden" name="q" value$="[[_query]]">
+              <div class="searchbox">
+                <paper-input on-keydown="_checkForEnterVirgo" no-label-float class="search-field" id="q1" value="{{_query}}" label="" placeholder="[[_searchVirgoPlaceholder]]" tabindex="0">
+                </paper-input>
+                <uvalib-button class="search" on-tap="submitCatalogSearch" alt="Search Virgo"><span>Search</span></uvalib-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="bottom" sticky>
+        <nav>
+          <a class="largeScreen" href="">About</a>
+          <a class="largeScreen" href="">Research</a>
+          <a class="largeScreen" href="">Collections</a>
+          <a class="largeScreen" href="">Services</a>
+          <a href=""><iron-icon icon="clock-o"></iron-icon> Hours</a>
+          <a href=""><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+          <a href=""><iron-icon icon="user"></iron-icon> Account</a>
+          <a href=""><iron-icon id="alert" icon="envelope-o"><paper-badge for="alert" label="[[_alertCount]]"></paper-badge></iron-icon></a>
+        </nav>
+      </div>
+    </app-header>
   </template>
 
   <script>
+
     /**
      * `uvalib-header`
      * Header element for the UVA Library web apps
+     *
+     * ### Styling
+     *
+     * `<uvalib-header>` provides the following custom properties and mixins for styling:
+     *
+     * Custom property | Description | Default
+     * ----------------|-------------|----------
+     * `--uvalib-header-height-lg` | The elements height when `largeScreen` is true | `253px`
+     * `--uvalib-header-height-md` | The elements height when `mediumScreen` is true | `156px`
+     * `--uvalib-header-height-sm` | The elements height when `smallScreen` is true | `128px`
+     * `--uvalib-header-background-color` | Background color of the header element | '--color-primary-color'
+     * `--uvalib-header-nav-background-color` | Background color of the header nav section (for large screens) | `--color-secondary-blue`
      *
      * @customElement
      * @polymer
      * @demo demo/index.html
      */
-    class UvalibHeader extends Polymer.Element {
+    class UvalibHeader extends UvalibUiElement {
       static get is() { return 'uvalib-header'; }
       static get properties() {
-        return {
-          smallScreen: {
-            type: Boolean,
-            value: false
-          },
-          mediumScreen: {
-            type: Boolean,
-            value: false
+        return Object.assign(super.properties,
+            {
+              _virgoSearchUrl: {
+                type: String,
+                value: "https://search.lib.virginia.edu/catalog"
+              },
+              _query: String,
+              _searchVirgoPlaceholder: {
+                type: String,
+                value: "Search Virgo for books, articles, digital materials, and more."
+              }
+            });
+      }
+      //Concat the this elements template with the parents
+      static get template() {
+        var parentTemplate = UvalibUiElement.template.cloneNode(true);
+        var childTemplate = Polymer.DomModule.import('uvalib-header', 'template');
+        parentTemplate.content.insertBefore(childTemplate.content,null);
+        return parentTemplate;
+      }
+      submitCatalogSearch() {
+        this.$.virgoSearchForm.submit();
+      }
+      _checkForEnterVirgo(e) {
+          // check if 'enter' was pressed
+          if (e.keyCode === 13) {
+              this.submitCatalogSearch();
           }
-        };
+      }
+      _openMenu(){
+        this.$.menuDialog.open();
       }
     }
 
