@@ -3,7 +3,6 @@
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../uvalib-logos/uvalib-logos.html">
-<link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../iron-form/iron-form.html">
 <link rel="import" href="../uvalib-button/uvalib-button.html">
@@ -12,14 +11,24 @@
 <link rel="import" href="../uva-models/uva-library-alerts.html">
 <link rel="import" href="../paper-badge/paper-badge.html">
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+<link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="uvalib-header">
   <template>
     <custom-style>
-      <style include="uvalib-theme uvalib-header-style"></style>
+      <style include="uvalib-theme uvalib-header-style">
+        #menuContainer {
+          height: 100%;
+          @apply --layout-vertical;
+        }
+
+      </style>
     </custom-style>
 
     <uva-library-alerts alerts="{{_alerts}}" unseen-count="{{_alertCount}}"></uva-library-alerts>
+
     <paper-dialog id="menuDialog" with-backdrop>
       <div id="menuContainer">
         <div id="menuTop">
@@ -27,9 +36,7 @@
           <div class="spacer"></div>
           <uvalib-button dialog-dismiss>Close x</uvalib-button>
         </div>
-        <h2>Custom Size &amp; Position</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <uvalib-search-box id="sm-search"></uvalib-search-box>
       </div>
     </paper-dialog>
     <app-header id="header" condenses reveals fixed effects="waterfall">
@@ -41,35 +48,34 @@
           <div id="menu">
             <uvalib-button icon="search" reverse outline on-click="_openMenu">Menu</uvalib-button>
           </div>
-          <div id="search">
-            <nav>
-              <a href="https://search.lib.virginia.edu/advanced?catalog_select=catalog">Catalog Advanced &gt;</a>
-              <a href="https://search.lib.virginia.edu/articles/advanced?catalog_select=articles">Article Advanced &gt;</a>
-              <a href="/search">Site Search &gt;</a>
-            </nav>
-            <form is="iron-form" method="get" action="[[_virgoSearchUrl]]" id="virgoSearchForm">
-              <input type="hidden" name="catalog_select" value="all">
-              <input type="hidden" name="q" value$="[[_query]]">
-              <div class="searchbox">
-                <paper-input on-keydown="_checkForEnterVirgo" no-label-float class="search-field" id="q1" value="{{_query}}" label="" placeholder="[[_searchVirgoPlaceholder]]" tabindex="0">
-                </paper-input>
-                <uvalib-button class="search" on-tap="submitCatalogSearch" alt="Search Virgo"><span>Search</span></uvalib-button>
-              </div>
-            </form>
-          </div>
+          <uvalib-search-box id="search"></uvalib-search-box>
         </div>
       </div>
       <div id="bottom" sticky>
-        <nav>
-          <a class="largeScreen" href="/about-uva-library">About</a>
-          <a class="largeScreen" href="/research">Research</a>
-          <a class="largeScreen" href="/collections">Collections</a>
-          <a class="largeScreen" href="/services">Services</a>
-          <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
-          <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
-          <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
-          <a href=""><iron-icon id="alert" icon="envelope-o"><paper-badge for="alert" label="[[_alertCount]]"></paper-badge></iron-icon></a>
-        </nav>
+        <div id="menu">
+          <nav>
+            <a class="largeScreen" href="/about-uva-library">About</a>
+            <a class="largeScreen" href="/research">Research</a>
+            <a class="largeScreen" href="/collections">Collections</a>
+            <a class="largeScreen" href="/services">Services</a>
+            <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+            <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+            <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
+            <template is="dom-if" if="[[_larger(_alertCount,0)]]">
+              <a href="" on-click="openAlert">
+                <iron-icon id="alert" icon="envelope-o"></iron-icon>
+                <paper-badge for="alert" label="[[_alertCount]]"></paper-badge>
+              </a>
+            </template>
+          </nav>
+        </div>
+        <div id="alerts">
+          <dom-repeat items="[[_alerts]]">
+            <template>
+              <div>[[item.title]]</div>
+            </template>
+          </dom-repeat>
+        </div>
       </div>
     </app-header>
   </template>
@@ -130,6 +136,10 @@
       }
       _openMenu(){
         this.$.menuDialog.open();
+      }
+      openAlert(e){
+        e.preventDefault();
+        this.$.alertdrop.open();
       }
     }
 
