@@ -33,9 +33,14 @@
           assert.equal(element.constructor.is, 'uvalib-header');
         });
 
+        test('instantiating the element with modified property works', () => {
+          const element = fixture('ChangedPropertyTestFixture');
+          assert.equal(element.lite, true);
+        });
       });
 
       a11ySuite('BasicTestFixture');
+      a11ySuite('ChangedPropertyTestFixture');
     </script>
 
   </body>

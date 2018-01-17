@@ -65,22 +65,39 @@
       <div id="bottom" sticky>
         <div id="menu">
           <nav>
-            <a class="largeScreen" href="/about-uva-library">About</a>
-            <a class="largeScreen" href="/research">Research</a>
-            <a class="largeScreen" href="/collections">Collections</a>
-            <a class="largeScreen" href="/services">Services</a>
-            <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
-            <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
-            <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
-            <template is="dom-if" if="[[_larger(_alertCount,0)]]">
-              <a href="" on-click="openAlert">
-                <!--<iron-icon id="alert" icon="envelope-o"></iron-icon>-->
-                <span>
-                  <paper-icon-button id="alert" icon="envelope-o" alt="Library Alerts"></paper-icon-button>
-                  <paper-badge for="alert" label="[[_alertCount]]"></paper-badge>
-                </span>
-              </a>
-            </template>
+
+            <ul>
+              <li>
+                <a class="largeScreen" href="/about-uva-library">About</a>
+              </li>
+              <li>
+                <a class="largeScreen" href="/research">Research</a>
+              </li>
+              <li>
+                <a class="largeScreen" href="/collections">Collections</a>
+              </li>
+              <li>
+                <a class="largeScreen" href="/services">Services</a>
+              </li>
+              <li>
+                <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+              </li>
+              <li>
+                <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+              </li>
+              <li>
+                <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
+              </li>
+              <template is="dom-if" if="[[_larger(_alertCount,0)]]">
+                <li>
+                  <a href="" on-click="openAlert">
+                    <paper-icon-button id="alert" icon="envelope-o" alt="Library Alerts"></paper-icon-button>
+                    <paper-badge for="alert" label="[[_alertCount]]"></paper-badge>
+                  </a>
+                </li>
+              </template>
+            </ul>
+
           </nav>
         </div>
         <div id="alerts">
