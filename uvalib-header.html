@@ -14,12 +14,15 @@
 <link rel="import" href="../polymer/lib/elements/dom-if.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
 <link rel="import" href="../polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-collapse/iron-collapse.html">
 
 <dom-module id="uvalib-header">
   <template>
     <custom-style>
       <style include="uvalib-theme uvalib-header-style">
+        nav {
+          min-height: 40px;
+        }
         nav ul {
           list-style-type: none;
           margin: 0;
@@ -42,6 +45,12 @@
           opacity: 0;
           visibility: hidden;
           transition: visibility 1s linear, max-height 1s ease-out, opacity 1s linear;
+        }
+        .alert-item {
+          background-color: var(--color-primary-orange);
+          border-width: 2px 0 0 0;
+          border-color: var(--color-white);
+          border-style: solid;
         }
       </style>
     </custom-style>
@@ -74,7 +83,6 @@
       <div id="bottom" sticky>
         <div id="menu">
           <nav>
-
             <ul>
               <li>
                 <a class="largeScreen" href="/about-uva-library">About</a>
@@ -100,7 +108,7 @@
               <template is="dom-if" if="[[_larger(_alertCount,0)]]">
                 <li>
                   <a href="" on-click="openAlert">
-                    <paper-icon-button id="alert" icon="envelope-o" alt="Library Alerts"></paper-icon-button>
+                    <iron-icon id="alert" icon="envelope-o" alt="Library Alerts"></iron-icon>
                     <paper-badge for="alert" label="[[_alertCount]]"></paper-badge>
                   </a>
                 </li>
@@ -112,7 +120,9 @@
         <div id="alerts">
           <dom-repeat items="[[_alerts]]">
             <template>
-              <div seen$="[[item.seen]]">[[item.title]]</div>
+              <iron-collapse opened$="[[!item.seen]]">
+                <div class="alert-item">[[item.title]]</div>
+              </iron-collapse>
             </template>
           </dom-repeat>
         </div>
