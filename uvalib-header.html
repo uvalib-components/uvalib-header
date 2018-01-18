@@ -122,7 +122,7 @@
         <div id="alerts">
           <dom-repeat items="[[_alerts]]" as="alert">
             <template>
-              <iron-collapse opened$="[[!alert.seen]]">
+              <iron-collapse opened$="[[!alert.seen]]" on-opened-changed="_adjustHeight" on-transitioning-changed="_adjustHeight">
                 <div class="alert-item" hot$="[[_isHot(alert.severity)]]" uuid="[[alert.uuid]]">
                   <div class="alert-head">
                     <div class="alert-title" on-click="_toggleIt">[[alert.title]]</div>
@@ -131,7 +131,7 @@
                       <uvalib-button on-click="_dismissIt">Dismiss</uvalib-button>
                     </template>
                   </div>
-                  <iron-collapse class="body-collapse" opened$="[[_isHot(alert.severity)]]">
+                  <iron-collapse class="body-collapse" opened$="[[_isHot(alert.severity)]]" on-opened-changed="_adjustHeight" on-transitioning-changed="_adjustHeight">
                     <div class="alert-body">
                       <marked-element markdown="[[alert.body]]">
                         <div slot="markdown-html"></div>
