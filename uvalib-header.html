@@ -58,7 +58,7 @@
       </style>
     </custom-style>
 
-    <uva-library-alerts alerts="{{_alerts}}" seen-count="{{_alertSeenCount}}" seen="{{_alertsSeen}}"></uva-library-alerts>
+    <uva-library-alerts id="alertsModel" alerts="{{_alerts}}" seen-count="{{_alertSeenCount}}" seen="{{_alertsSeen}}"></uva-library-alerts>
 
     <paper-dialog id="menuDialog" with-backdrop>
       <div id="menuContainer">
@@ -127,6 +127,7 @@
                   <div class="alert-head">
                     <div class="alert-title" on-click="_toggleIt">[[alert.title]]</div>
                     <template is="dom-if" if="[[!_isHot(alert.severity)]]">
+                      <uvalib-button on-click="_toggleIt">More</uvalib-button>
                       <uvalib-button on-click="_dismissIt">Dismiss</uvalib-button>
                     </template>
                   </div>
@@ -216,11 +217,9 @@
       }
       _dismissIt(e){
         var uuid = e.currentTarget.parentElement.parentElement.uuid;
+
         // Have to be a bit harsh here to get this change notified for some reason
-        this._alertsSeen.push(uuid);
-        var seen = this._alertsSeen;
-        this.set('_alertsSeen',[]);
-        this.set('_alertsSeen',seen);
+        this.$.alertsModel.setSeen(uuid);
       }
       _isHot(severity){
         return (severity==="alert1");
