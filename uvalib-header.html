@@ -46,6 +46,9 @@
           border-color: var(--color-white);
           border-style: solid;
         }
+        .alert-item[hot] {
+          background-color: var(--color-emergency-red);
+        }
         .alert-head {
           @apply --layout-horizontal;
         }
@@ -119,19 +122,23 @@
         <div id="alerts">
           <dom-repeat items="[[_alerts]]" as="alert">
             <template>
-              <iron-collapse opened$="[[!alert.seen]]"><div class="alert-item" uuid="[[alert.uuid]]">
-                <div class="alert-head">
-                  <div class="alert-title" on-click="_toggleIt">[[alert.title]]</div>
-                  <uvalib-button on-click="_dismissIt">Dismiss</uvalib-button>
-                </div>
-                <iron-collapse class="body-collapse">
-                  <div class="alert-body">
-                    <marked-element markdown="[[alert.body]]">
-                      <div slot="markdown-html"></div>
-                    </marked-element>
+              <iron-collapse opened$="[[!alert.seen]]">
+                <div class="alert-item" hot$="[[_isHot(alert.severity)]]" uuid="[[alert.uuid]]">
+                  <div class="alert-head">
+                    <div class="alert-title" on-click="_toggleIt">[[alert.title]]</div>
+                    <template is="dom-if" if="[[!_isHot(alert.severity)]]">
+                      <uvalib-button on-click="_dismissIt">Dismiss</uvalib-button>
+                    </template>
                   </div>
-                </iron-collapse>
-              </div></iron-collapse>
+                  <iron-collapse class="body-collapse" opened$="[[_isHot(alert.severity)]]">
+                    <div class="alert-body">
+                      <marked-element markdown="[[alert.body]]">
+                        <div slot="markdown-html"></div>
+                      </marked-element>
+                    </div>
+                  </iron-collapse>
+                </div>
+              </iron-collapse>
             </template>
           </dom-repeat>
         </div>
@@ -214,6 +221,9 @@
         var seen = this._alertsSeen;
         this.set('_alertsSeen',[]);
         this.set('_alertsSeen',seen);
+      }
+      _isHot(severity){
+        return (severity==="alert1");
       }
     }
 
