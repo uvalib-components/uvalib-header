@@ -196,6 +196,14 @@
         parentTemplate.content.insertBefore(childTemplate.content,null);
         return parentTemplate;
       }
+      connectedCallback() {
+        super.connectedCallback();
+        this._adjustHeight();
+      }
+      _adjustHeight() {
+        console.log(this.$.header.clientHeight)
+        this.style.height=this.$.header.clientHeight+"px";
+      }
       submitCatalogSearch() {
         this.$.virgoSearchForm.submit();
       }
