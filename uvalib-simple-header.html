@@ -20,65 +20,13 @@
           <li hidden$="[[!_larger(_alertSeenCount,0)]]">
             <a href="" on-click="viewAllAlerts">
               <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
-              <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
+              <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
             </a>
           </li>
         </ul>
       </nav>
     </div>
     <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}"></uvalib-alerts>
-<!--
-    <app-header id="header" condenses reveals fixed effects="waterfall">
-      <div id="top">
-        <div>
-          <div id="logo">
-            <uvalib-logos stacked text-only reverse></uvalib-logos>
-          </div>
-          <div id="menu">
-            <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
-          </div>
-          <uvalib-search-box id="search"></uvalib-search-box>
-        </div>
-      </div>
-      <div id="bottom" sticky>
-        <div id="menu">
-          <nav>
-            <ul>
-              <li>
-                <a class="largeScreen" href="/about-uva-library">About</a>
-              </li>
-              <li>
-                <a class="largeScreen" href="/research">Research</a>
-              </li>
-              <li>
-                <a class="largeScreen" href="/collections">Collections</a>
-              </li>
-              <li>
-                <a class="largeScreen" href="/services">Services</a>
-              </li>
-              <li>
-                <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
-              </li>
-              <li>
-                <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
-              </li>
-              <li>
-                <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
-              </li>
-              <li hidden$="[[!_larger(_alertSeenCount,0)]]">
-                <a href="" on-click="viewAllAlerts">
-                  <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
-                  <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
-                </a>
-              </li>
-            </ul>
-
-          </nav>
-        </div>
-        <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
-      </div>
-    </app-header>
-  -->
   </template>
 
   <script>
@@ -108,6 +56,10 @@
               lite: {
                 type: Boolean,
                 value: true
+              },
+              _alertSeenCount: {
+                type: Number,
+                observer: '_seenCountChanged'
               }
             });
       }
@@ -118,7 +70,9 @@
         parentTemplate.content.insertBefore(childTemplate.content,null);
         return parentTemplate;
       }
-
+      _seenCountChanged(){
+        this.$.alertBadge.notifyResize();
+      }
       viewAllAlerts(e){
         e.preventDefault();
         this.$.alerts.unseeAll();
