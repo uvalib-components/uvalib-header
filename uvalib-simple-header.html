@@ -1,36 +1,33 @@
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
 <link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
-<link rel="import" href="../app-layout/app-header/app-header.html">
-<link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../uvalib-logos/uvalib-logos.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
-<link rel="import" href="../iron-form/iron-form.html">
-<link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../paper-badge/paper-badge.html">
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
-<link rel="import" href="../polymer/lib/elements/dom-if.html">
-<link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
-
 <link rel="import" href="../uvalib-alerts/uvalib-alerts.html">
 
-<dom-module id="uvalib-header">
-  <template>
-    <custom-style>
-      <style include="uvalib-theme uvalib-header-style"></style>
-    </custom-style>
 
-    <paper-dialog id="menuDialog" with-backdrop>
-      <div id="menuContainer">
-        <div id="menuTop">
-          <uvalib-logos stacked text-only reverse></uvalib-logos>
-          <div class="spacer"></div>
-          <paper-button dialog-dismiss>Close x</paper-button>
-        </div>
-        <uvalib-search-box id="sm-search"></uvalib-search-box>
-      </div>
-    </paper-dialog>
+<dom-module id="uvalib-simple-header">
+  <template>
+    <custom-style><style include="uvalib-header-style"></style></custom-style>
+    <div id="header" class="layout horizontal">
+      <div id="logo"><uvalib-logos two-color reverse></uvalib-logos></div>
+      <div id="spacer" class="flex"></div>
+      <nav>
+        <ul>
+          <li><a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a></li>
+          <li hidden$="[[!_larger(_alertSeenCount,0)]]">
+            <a href="" on-click="viewAllAlerts">
+              <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
+              <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}"></uvalib-alerts>
+<!--
     <app-header id="header" condenses reveals fixed effects="waterfall">
       <div id="top">
         <div>
@@ -81,79 +78,53 @@
         <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
       </div>
     </app-header>
+  -->
   </template>
 
   <script>
 
     /**
-     * `uvalib-header`
+     * `uvalib-simple-header`
      * Header element for the UVA Library web apps
      *
      * ### Styling
      *
-     * `<uvalib-header>` provides the following custom properties and mixins for styling:
+     * `<uvalib-simple-header>` provides the following custom properties and mixins for styling:
      *
      * Custom property | Description | Default
      * ----------------|-------------|----------
-     * `--uvalib-header-height-lg` | The elements height when `largeScreen` is true | `253px`
-     * `--uvalib-header-height-md` | The elements height when `mediumScreen` is true | `156px`
-     * `--uvalib-header-height-sm` | The elements height when `smallScreen` is true | `128px`
      * `--uvalib-header-background-color` | Background color of the header element | '--color-primary-color'
      * `--uvalib-header-nav-background-color` | Background color of the header nav section (for large screens) | `--color-secondary-blue`
      *
      * @customElement
      * @polymer
-     * @demo demo/index.html
+     * @demo demo/simple.html
      */
-    class UvalibHeader extends UvalibUiElement {
-      static get is() { return 'uvalib-header'; }
+    class UvalibSimpleHeader extends UvalibUiElement {
+      static get is() { return 'uvalib-simple-header'; }
       static get properties() {
         return Object.assign(super.properties,
             {
-              _virgoSearchUrl: {
-                type: String,
-                value: "https://search.lib.virginia.edu/catalog"
-              },
-              _query: String,
-              _searchVirgoPlaceholder: {
-                type: String,
-                value: "Search Virgo for books, articles, digital materials, and more."
+              lite: {
+                type: Boolean,
+                value: true
               }
             });
       }
       //Concat the this elements template with the parents
       static get template() {
         var parentTemplate = UvalibUiElement.template.cloneNode(true);
-        var childTemplate = Polymer.DomModule.import('uvalib-header', 'template');
+        var childTemplate = Polymer.DomModule.import('uvalib-simple-header', 'template');
         parentTemplate.content.insertBefore(childTemplate.content,null);
         return parentTemplate;
       }
-      connectedCallback() {
-        super.connectedCallback();
-        this._adjustHeight();
-      }
-      _adjustHeight() {
-        console.log(this.$.header.clientHeight)
-        this.style.height=this.$.header.clientHeight+"px";
-      }
-      submitCatalogSearch() {
-        this.$.virgoSearchForm.submit();
-      }
-      _checkForEnterVirgo(e) {
-          // check if 'enter' was pressed
-          if (e.keyCode === 13) {
-              this.submitCatalogSearch();
-          }
-      }
-      _openMenu(){
-        this.$.menuDialog.open();
-      }
+
       viewAllAlerts(e){
         e.preventDefault();
         this.$.alerts.unseeAll();
       }
     }
 
-    window.customElements.define(UvalibHeader.is, UvalibHeader);
+    window.customElements.define(UvalibSimpleHeader.is, UvalibSimpleHeader);
   </script>
 </dom-module>
