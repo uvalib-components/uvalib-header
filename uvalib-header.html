@@ -2,14 +2,10 @@
 <link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
-<link rel="import" href="../uvalib-logos/uvalib-logos.html">
-<link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../iron-form/iron-form.html">
 <link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../paper-badge/paper-badge.html">
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
-<link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
+
 
 <!--
 <link rel="import" href="../uvalib-alerts/uvalib-alerts.html">
@@ -17,19 +13,21 @@
 <dom-module id="uvalib-header">
   <template>
     <custom-style>
-      <style include="uvalib-theme uvalib-header-style"></style>
+      <style include="uvalib-theme uvalib-header-style">
+      </style>
     </custom-style>
-
-    <paper-dialog id="menuDialog" with-backdrop>
-      <div id="menuContainer">
-        <div id="menuTop">
-          <uvalib-logos stacked text-only reverse></uvalib-logos>
-          <div class="spacer"></div>
-          <paper-button dialog-dismiss>Close x</paper-button>
+    <template is="dom-if" if="[[lazyLoadComplete]]">
+      <paper-dialog id="menuDialog" with-backdrop>
+        <div id="menuContainer">
+          <div id="menuTop">
+            <uvalib-logos stacked text-only reverse></uvalib-logos>
+            <div class="spacer"></div>
+            <paper-button dialog-dismiss>Close x</paper-button>
+          </div>
+          <uvalib-search-box id="sm-search"></uvalib-search-box>
         </div>
-        <uvalib-search-box id="sm-search"></uvalib-search-box>
-      </div>
-    </paper-dialog>
+      </paper-dialog>
+    </template>
     <app-header id="header" condenses reveals fixed effects="waterfall">
       <div id="top">
         <div>
@@ -109,7 +107,10 @@
       static get properties() {
         return Object.assign(super.properties,
             {
-
+              lazyLoadComplete: {
+                type:Boolean,
+                value:false
+              }
             });
       }
       //Concat the this elements template with the parents
@@ -127,7 +128,7 @@
         this.style.height=this.$.header.clientHeight+"px";
       }
       _openMenu(){
-        this.$.menuDialog.open();
+        this.shadowRoot.querySelector('#menuDialog').open();
       }
       viewAllAlerts(e){
         e.preventDefault();
