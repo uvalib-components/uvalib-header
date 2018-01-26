@@ -10,14 +10,14 @@
 
 <dom-module id="uvalib-simple-header">
   <template>
-    <custom-style><style include="uvalib-header-style"></style></custom-style>
+    <custom-style><style include="uvalib-theme uvalib-header-style"></style></custom-style>
     <div id="top">
       <div id="header" class="layout horizontal">
         <div id="logo"><uvalib-logos two-color reverse></uvalib-logos></div>
         <div id="spacer" class="flex"></div>
         <nav>
           <ul>
-            <li><a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a></li>
+            <li><a href="//library.virginia.edu/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a></li>
             <li hidden$="[[!_larger(_alertSeenCount,0)]]">
               <a href="" on-click="viewAllAlerts">
                 <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
