@@ -11,7 +11,7 @@
 <link rel="import" href="../paper-badge/paper-badge.html">
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
-<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
 <!--
 <link rel="import" href="../uvalib-alerts/uvalib-alerts.html">
 -->
@@ -78,9 +78,7 @@
 
           </nav>
         </div>
-        <template is="dom-if" if="[[lazyLoadComplete]]">
-          <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
-        </template>
+        <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
       </div>
     </app-header>
   </template>
@@ -112,11 +110,7 @@
       static get properties() {
         return Object.assign(super.properties,
             {
-              lazyLoadComplete: {
-                type:Boolean,
-                value: false,
-                observer:"_adjustHeight"
-              }
+              
             });
       }
       //Concat the this elements template with the parents
