@@ -109,7 +109,8 @@
             {
               lazyLoadComplete: {
                 type:Boolean,
-                value:false
+                value:false,
+                observer:"_delayedAdjustHeight"
               }
             });
       }
@@ -123,6 +124,9 @@
       connectedCallback() {
         super.connectedCallback();
         this._adjustHeight();
+      }
+      _delayedAdjustHeight(){
+        setTimeout(function(){ this._adjustHeight(); }.bind(this), 500);
       }
       _adjustHeight() {
         this.style.height=this.$.header.clientHeight+"px";
