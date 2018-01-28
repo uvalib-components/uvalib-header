@@ -23,7 +23,7 @@
       <paper-dialog id="menuDialog" with-backdrop>
         <div id="menuContainer">
           <div id="menuTop">
-            <a href="{{libraryHomeURL}}"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
+            <a href="{{libraryHomeLink}}"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
             <div class="spacer"></div>
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
@@ -36,7 +36,7 @@
       <div id="top">
         <div>
           <div id="logo">
-            <a href="{{libraryHomeURL}}"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
+            <a href="{{libraryHomeLink}}"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
           <div id="menu">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
@@ -115,7 +115,7 @@
         return Object.assign(super.properties,
             {
               /** Set this if you want to overwrite the default (just take the default unless used on the Library App) **/
-              libraryHomeURL: {
+              libraryHomeLink: {
                 type: String,
                 value: "https://www.library.virginia.edu"
               },
