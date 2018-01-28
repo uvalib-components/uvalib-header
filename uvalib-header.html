@@ -16,6 +16,7 @@
         [hide] iron-icon {
           opacity: .5;
         }
+        
       </style>
     </custom-style>
     <template is="dom-if" if="[[lazyLoadComplete]]">
@@ -35,7 +36,7 @@
       <div id="top">
         <div>
           <div id="logo">
-            <uvalib-logos stacked text-only reverse></uvalib-logos>
+            <uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos>
           </div>
           <div id="menu">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
