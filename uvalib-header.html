@@ -4,11 +4,15 @@
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
+<link rel="import" href="../iron-meta/iron-meta.html">
 
 <dom-module id="uvalib-header">
   <template>
     <custom-style>
       <style include="uvalib-theme uvalib-header-style">
+        [hide] {
+          opacity: 0;
+        }
       </style>
     </custom-style>
     <template is="dom-if" if="[[lazyLoadComplete]]">
@@ -23,6 +27,7 @@
         </div>
       </paper-dialog>
     </template>
+
     <app-header id="header" condenses reveals fixed effects="waterfall">
       <div id="top">
         <div>
@@ -60,11 +65,13 @@
               <li>
                 <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
               </li>
-              <li hidden$="[[!_larger(_alertSeenCount,0)]]">
-                <a href="" on-click="viewAllAlerts">
-                  <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
-                  <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
-                </a>
+              <li>
+                <div style="display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
+                  <a href="" on-click="viewAllAlerts">
+                    <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
+                    <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                  </a>
+                </div>
               </li>
             </ul>
 
@@ -73,6 +80,7 @@
         <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
       </div>
     </app-header>
+    <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
   </template>
 
   <script>
@@ -106,6 +114,10 @@
                 type:Boolean,
                 value:false,
                 observer:"_delayedAdjustHeight"
+              },
+              _height: {
+                type: String,
+                notify: true
               }
             });
       }
@@ -124,7 +136,7 @@
         setTimeout(function(){ this._adjustHeight(); }.bind(this), 500);
       }
       _adjustHeight() {
-        this.style.height=this.$.header.clientHeight+"px";
+        this._height=this.style.height=this.$.header.clientHeight+"px";
       }
       _openMenu(){
         this.shadowRoot.querySelector('#menuDialog').open();
