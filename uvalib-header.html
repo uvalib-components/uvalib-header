@@ -1,5 +1,5 @@
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
-<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">
+<!--<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">-->
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
@@ -16,14 +16,14 @@
         [hide] iron-icon {
           opacity: .5;
         }
-        
+
       </style>
     </custom-style>
     <template is="dom-if" if="[[lazyLoadComplete]]">
       <paper-dialog id="menuDialog" with-backdrop>
         <div id="menuContainer">
           <div id="menuTop">
-            <uvalib-logos stacked text-only reverse></uvalib-logos>
+            <a href="{{libraryHomeURL}}"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
             <div class="spacer"></div>
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
@@ -36,7 +36,7 @@
       <div id="top">
         <div>
           <div id="logo">
-            <uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos>
+            <a href="{{libraryHomeURL}}"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
           <div id="menu">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
@@ -114,11 +114,18 @@
       static get properties() {
         return Object.assign(super.properties,
             {
+              /** Set this if you want to overwrite the default (just take the default unless used on the Library App) **/
+              libraryHomeURL: {
+                type: String,
+                value: "https://www.library.virginia.edu"
+              },
+              /** Set this to false untill the lazy loaded components finish loading **/
               lazyLoadComplete: {
                 type:Boolean,
-                value:false,
+                value:true,
                 observer:"_delayedAdjustHeight"
               },
+              /** Tracks the header components height **/
               _height: {
                 type: String,
                 notify: true
