@@ -71,10 +71,10 @@
               </li>
               <li>
                 <div style="display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
-                  <a href="" id="alert" on-click="viewAllAlerts">
-                    <span class="visibleMobile"> Alert</span>
-                      <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                      <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                  <a href="" id="alert" on-click="viewAllAlerts" aria-labelledby="alert-text">
+                    <span id="alert-text" class="visibleMobile"> Alerts</span>
+                    <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
+                    <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
                   </a>
                 </div>
               </li>
