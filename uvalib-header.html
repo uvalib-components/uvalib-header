@@ -1,15 +1,17 @@
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
-<!--<link rel="import" href="../uva-helper-libs/polyfills/object.assign.html">-->
 <link rel="import" href="../uvalib-theme/uvalib-header-style.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../uvalib-search-box/uvalib-search-box.html">
 <link rel="import" href="../iron-meta/iron-meta.html">
 
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+
 <dom-module id="uvalib-header">
   <template>
     <custom-style>
-      <style include="uvalib-theme uvalib-header-style">
+      <style include="uvalib-theme uvalib-header-style iron-flex">
         [hide] paper-badge {
           opacity: 0;
         }
@@ -28,6 +30,36 @@
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
           <uvalib-search-box id="sm-search"></uvalib-search-box>
+
+          <div id="menu">
+            <nav class="horizontal layout wrap">
+              <ul class="vertical layout">
+                <li>
+                  <a href="/about-uva-library">About</a>
+                </li>
+                <li>
+                  <a href="/research">Research</a>
+                </li>
+                <li>
+                  <a href="/collections">Collections</a>
+                </li>
+                <li>
+                  <a href="/services">Services</a>
+                </li>
+              </ul>
+              <ul class="vertical layout">
+                <li>
+                  <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                </li>
+                <li>
+                  <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+                </li>
+                <li>
+                  <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </paper-dialog>
     </template>
