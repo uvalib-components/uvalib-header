@@ -13,14 +13,15 @@
     <custom-style><style include="uvalib-theme uvalib-header-style"></style></custom-style>
     <div id="simple">
       <div id="top">
-        <div id="header" class="layout horizontal">
-          <div id="logo"><uvalib-logos two-color reverse></uvalib-logos></div>
+        <div id="header" class="layout horizontal" role="banner">
+          <div id="logo"><a href="//library.virginia.edu/"><uvalib-logos two-color reverse></uvalib-logos></a></div>
           <div id="spacer" class="flex"></div>
           <nav>
             <ul>
               <li><a href="//library.virginia.edu/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a></li>
               <li hidden$="[[!_larger(_alertSeenCount,0)]]">
-                <a href="" on-click="viewAllAlerts">
+                <a href="" on-click="viewAllAlerts" aria-labelledby="alert-text">
+                  <span id="alert-text" class="visibleMobile"> Alerts</span>
                   <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
                   <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
                 </a>

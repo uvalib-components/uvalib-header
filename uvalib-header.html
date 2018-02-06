@@ -64,7 +64,7 @@
       </paper-dialog>
     </template>
 
-    <app-header id="header" condenses reveals fixed effects="waterfall">
+    <app-header id="header" condenses reveals fixed effects="waterfall" role="banner">
       <div id="top">
         <div>
           <div id="logo">
@@ -103,8 +103,9 @@
               </li>
               <li>
                 <div style="display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
-                  <a href="" on-click="viewAllAlerts">
-                    <iron-icon id="alert" icon="bell" alt="Library Alerts"></iron-icon>
+                  <a href="" id="alert" on-click="viewAllAlerts" aria-labelledby="alert-text">
+                    <span id="alert-text" class="visibleMobile"> Alerts</span>
+                    <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
                     <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
                   </a>
                 </div>
