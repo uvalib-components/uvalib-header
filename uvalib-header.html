@@ -29,9 +29,9 @@
             <div class="spacer"></div>
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
-          <uvalib-search-box id="sm-search"></uvalib-search-box>
+          <uvalib-search-box id="menudialogsearch"></uvalib-search-box>
 
-          <div id="menu">
+          <div id="menudialogmenu">
             <nav class="horizontal layout wrap">
               <ul class="vertical layout">
                 <li>
@@ -70,7 +70,7 @@
           <div id="logo">
             <a href="{{libraryHomeLink}}"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
-          <div id="menu">
+          <div id="menubutton">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box id="search"></uvalib-search-box>
@@ -188,6 +188,24 @@
       viewAllAlerts(e){
         e.preventDefault();
         this.$.alerts.unseeAll();
+      }
+      changeFocusToSearch() {
+        // TODO probably should make this another event that goes down to the search box component so that focus can go to the first link
+        if (this.largeScreen) {
+          this.$.search.focus();
+        } else {
+          this.$.menudialogsearch.focus();
+        }
+      }
+      changeFocusToNavigation() {
+        var menuItems;
+        if (this.largeScreen) {
+          menuItems = this.$.menu.querySelector('nav ul li');
+          menuItems[0].focus();
+        } else {
+          menuItems = this.$.menudialogmenu.querySelector('nav ul li');
+          menuItems[0].focus();
+        }
       }
     }
 
