@@ -199,10 +199,10 @@
       changeFocusToNavigation() {
         var menuItems;
         if (this.largeScreen) {
-          menuItems = this.$.menu.querySelector('nav ul li');
+          menuItems = this.$.menu.querySelector('nav ul li a');
           menuItems[0].focus();
         } else {
-          menuItems = this.$.menuDialogNav.querySelector('nav ul li');
+          menuItems = this.$.menuDialogNav.querySelector('nav ul li a');
           menuItems[0].focus();
         }
       }
