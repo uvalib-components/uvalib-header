@@ -35,7 +35,7 @@
             <nav class="horizontal layout wrap">
               <ul class="vertical layout">
                 <li>
-                  <a href="/about-uva-library">About</a>
+                  <a id="menuDialogNavFirstItem" href="/about-uva-library">About</a>
                 </li>
                 <li>
                   <a href="/research">Research</a>
@@ -81,7 +81,7 @@
           <nav>
             <ul>
               <li>
-                <a class="largeScreen" href="/about-uva-library">About</a>
+                <a id="menuLargeScreenFirstItem" class="largeScreen" href="/about-uva-library">About</a>
               </li>
               <li>
                 <a class="largeScreen" href="/research">Research</a>
@@ -93,7 +93,7 @@
                 <a class="largeScreen" href="/services">Services</a>
               </li>
               <li>
-                <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                <a id="menuNotLargeScreenFirstItem" href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
               </li>
               <li>
                 <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
@@ -199,11 +199,9 @@
       changeFocusToNavigation() {
         var menuItems;
         if (this.largeScreen) {
-          menuItems = this.$.menu.querySelector('nav ul li a');
-          menuItems[0].focus();
-        } else {
-          menuItems = this.$.menuDialogNav.querySelector('nav ul li a');
-          menuItems[0].focus();
+          menuItems = this.$.menuLargeScreenFirstItem.focus();
+        } elseif (!this.largeScreen) {
+          menuItems = this.$.menuNotLargeScreenFirstItem.focus();
         }
       }
     }
