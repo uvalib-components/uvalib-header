@@ -81,7 +81,7 @@
           <nav>
             <ul>
               <li>
-                <a id="menuLargeScreenFirstItem" class="largeScreen" href="/about-uva-library">About</a>
+                <a class="largeScreen" id="menuLargeScreenFirstItem" href="/about-uva-library">About</a>
               </li>
               <li>
                 <a class="largeScreen" href="/research">Research</a>
@@ -197,12 +197,14 @@
         }
       }
       changeFocusToNavigation() {
-        var menuItems;
         if (this.largeScreen) {
-          menuItems = this.$.menuLargeScreenFirstItem.focus();
+          this.$.menuLargeScreenFirstItem.focus();
         } else {
-          menuItems = this.$.menuNotLargeScreenFirstItem.focus();
+          this.$.menuNotLargeScreenFirstItem.focus();
         }
+      }
+      changeFocusToFirstItem() {
+        this.$.logo.querySelector('a').focus();
       }
     }
 
