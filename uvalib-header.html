@@ -29,13 +29,13 @@
             <div class="spacer"></div>
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
-          <uvalib-search-box relative-links$="[[relativeLinks]]" id="menudialogsearch"></uvalib-search-box>
+          <uvalib-search-box relative-links$="[[relativeLinks]]" id="menuDialogSearch"></uvalib-search-box>
 
-          <div id="menudialogmenu">
+          <div id="menuDialogNav">
             <nav class="horizontal layout wrap">
               <ul class="vertical layout">
                 <li>
-                  <a href="[[_domain]]/about-uva-library">About</a>
+                  <a id="menuDialogNavFirstItem" href="[[_domain]]/about-uva-library">About</a>
                 </li>
                 <li>
                   <a href="[[_domain]]/research">Research</a>
@@ -70,7 +70,7 @@
           <div id="logo">
             <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
-          <div id="menubutton">
+          <div id="menuButton">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box relative-links$="[[relativeLinks]]" id="search"></uvalib-search-box>
@@ -81,7 +81,7 @@
           <nav>
             <ul>
               <li>
-                <a class="largeScreen" href="[[_domain]]/about-uva-library">About</a>
+                <a class="largeScreen" id="menuLargeScreenFirstItem" href="[[_domain]]/about-uva-library">About</a>
               </li>
               <li>
                 <a class="largeScreen" href="[[_domain]]/research">Research</a>
@@ -93,7 +93,7 @@
                 <a class="largeScreen" href="[[_domain]]/services">Services</a>
               </li>
               <li>
-                <a href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                <a id="menuNotLargeScreenFirstItem" href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
               </li>
               <li>
                 <a href="[[_domain]]/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
@@ -171,6 +171,10 @@
               _domain: {
                 type: String,
                 computed: "_makeLinkDomain(relativeLinks)"
+              },
+              tabindex: {
+                type: Number,
+                value: -1
               }
             });
       }
@@ -202,22 +206,21 @@
         this.$.alerts.unseeAll();
       }
       changeFocusToSearch() {
-        // TODO probably should make this another event that goes down to the search box component so that focus can go to the first link
         if (this.largeScreen) {
-          this.$.search.focus();
+          this.$.search.changeFocusToCatalogAdvanced();
         } else {
-          this.$.menudialogsearch.focus();
+          this.$.menuDialogSearch.changeFocusToCatalogAdvanced();
         }
       }
       changeFocusToNavigation() {
-        var menuItems;
         if (this.largeScreen) {
-          menuItems = this.$.menu.querySelector('nav ul li');
-          menuItems[0].focus();
+          this.$.menuLargeScreenFirstItem.focus();
         } else {
-          menuItems = this.$.menudialogmenu.querySelector('nav ul li');
-          menuItems[0].focus();
+          this.$.menuNotLargeScreenFirstItem.focus();
         }
+      }
+      changeFocusToFirstItem() {
+        this.$.logo.querySelector('a').focus();
       }
     }
 
