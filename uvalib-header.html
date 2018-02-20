@@ -25,34 +25,34 @@
       <paper-dialog id="menuDialog" with-backdrop>
         <div id="menuContainer">
           <div id="menuTop">
-            <a href="{{libraryHomeLink}}"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
+            <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
             <div class="spacer"></div>
             <paper-button dialog-dismiss>Close x</paper-button>
           </div>
-          <uvalib-search-box id="menudialogsearch"></uvalib-search-box>
+          <uvalib-search-box relative-links$="[[relativeLinks]]" id="menudialogsearch"></uvalib-search-box>
 
           <div id="menudialogmenu">
             <nav class="horizontal layout wrap">
               <ul class="vertical layout">
                 <li>
-                  <a href="/about-uva-library">About</a>
+                  <a href="[[_domain]]/about-uva-library">About</a>
                 </li>
                 <li>
-                  <a href="/research">Research</a>
+                  <a href="[[_domain]]/research">Research</a>
                 </li>
                 <li>
-                  <a href="/collections">Collections</a>
+                  <a href="[[_domain]]/collections">Collections</a>
                 </li>
                 <li>
-                  <a href="/services">Services</a>
+                  <a href="[[_domain]]/services">Services</a>
                 </li>
               </ul>
               <ul class="vertical layout">
                 <li>
-                  <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                  <a href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
                 </li>
                 <li>
-                  <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+                  <a href="[[_domain]]/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
                 </li>
                 <li>
                   <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
@@ -68,12 +68,12 @@
       <div id="top">
         <div>
           <div id="logo">
-            <a href="{{libraryHomeLink}}"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
+            <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
           <div id="menubutton">
             <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
           </div>
-          <uvalib-search-box id="search"></uvalib-search-box>
+          <uvalib-search-box relative-links$="[[relativeLinks]]" id="search"></uvalib-search-box>
         </div>
       </div>
       <div id="bottom" sticky>
@@ -81,22 +81,22 @@
           <nav>
             <ul>
               <li>
-                <a class="largeScreen" href="/about-uva-library">About</a>
+                <a class="largeScreen" href="[[_domain]]/about-uva-library">About</a>
               </li>
               <li>
-                <a class="largeScreen" href="/research">Research</a>
+                <a class="largeScreen" href="[[_domain]]/research">Research</a>
               </li>
               <li>
-                <a class="largeScreen" href="/collections">Collections</a>
+                <a class="largeScreen" href="[[_domain]]/collections">Collections</a>
               </li>
               <li>
-                <a class="largeScreen" href="/services">Services</a>
+                <a class="largeScreen" href="[[_domain]]/services">Services</a>
               </li>
               <li>
-                <a href="/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                <a href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
               </li>
               <li>
-                <a href="/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+                <a href="[[_domain]]/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
               </li>
               <li>
                 <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
@@ -158,10 +158,19 @@
                 value:true,
                 observer:"_delayedAdjustHeight"
               },
+              /** Set this to true when you want the links to be relative (when used in library.virginia.edu) **/
+              relativeLinks: {
+                type: Boolean,
+                value: false
+              },
               /** Tracks the header components height **/
               _height: {
                 type: String,
                 notify: true
+              },
+              _domain: {
+                type: String,
+                computed: "_makeLinkDomain(relativeLinks)"
               }
             });
       }
@@ -171,6 +180,9 @@
         var childTemplate = Polymer.DomModule.import('uvalib-header', 'template');
         parentTemplate.content.insertBefore(childTemplate.content,null);
         return parentTemplate;
+      }
+      _makeLinkDomain(relLinks) {
+        return (relLinks)? "":"https://www.library.virginia.edu";
       }
       connectedCallback() {
         super.connectedCallback();
