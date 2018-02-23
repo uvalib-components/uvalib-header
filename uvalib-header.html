@@ -71,7 +71,7 @@
             <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
           <div id="menuButton">
-            <paper-button icon="search" reverse outline on-click="_openMenu">Menu</paper-button>
+            <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box relative-links$="[[relativeLinks]]" id="search"></uvalib-search-box>
         </div>
@@ -198,8 +198,13 @@
       _adjustHeight() {
         this._height=this.style.height=this.$.header.clientHeight+"px";
       }
-      _openMenu(){
+      /** Opens the menu dialog (only do this in a smaller screen context) **/
+      openMenu(){
         this.shadowRoot.querySelector('#menuDialog').open();
+      }
+      /** Closes the menu dialog **/
+      closeMenu(){
+        this.shadowRoot.querySelector('#menuDialog').close();
       }
       viewAllAlerts(e){
         e.preventDefault();
