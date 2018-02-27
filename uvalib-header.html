@@ -25,9 +25,10 @@
       <paper-dialog id="menuDialog" with-backdrop>
         <div id="menuContainer">
           <div id="menuTop">
-            <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked text-only reverse></uvalib-logos></a>
-            <div class="spacer"></div>
-            <paper-button dialog-dismiss>Close x</paper-button>
+            <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos text-only reverse></uvalib-logos></a>
+            <div id="menuButton">
+              <paper-button dialog-dismiss>Close&nbsp;X</paper-button>
+            </div>
           </div>
           <uvalib-search-box relative-links$="[[relativeLinks]]" id="menuDialogSearch" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
 
@@ -46,8 +47,6 @@
                 <li>
                   <a href="[[_domain]]/services">Services</a>
                 </li>
-              </ul>
-              <ul class="vertical layout">
                 <li>
                   <a href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
                 </li>
@@ -70,7 +69,7 @@
           <div id="logo">
             <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$=[[largeScreen]] text-only reverse></uvalib-logos></a>
           </div>
-          <div id="menuButton">
+          <div id="menuButton" class="menuLarge">
             <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
@@ -93,18 +92,18 @@
                 <a class="largeScreen" href="[[_domain]]/services">Services</a>
               </li>
               <li>
-                <a id="menuNotLargeScreenFirstItem" href="[[_domain]]/hours"><iron-icon icon="clock-o"></iron-icon> Hours</a>
+                <a id="menuNotLargeScreenFirstItem" href="[[_domain]]/hours"><iron-icon class="largeScreen" icon="clock-o"></iron-icon> Hours</a>
               </li>
               <li>
-                <a href="[[_domain]]/askalibrarian"><iron-icon icon="comments"></iron-icon> Ask a Librarian</a>
+                <a href="[[_domain]]/askalibrarian"><iron-icon class="largeScreen" icon="comments"></iron-icon> Ask a Librarian</a>
               </li>
               <li>
-                <a href="http://search.lib.virginia.edu/account/review"><iron-icon icon="user"></iron-icon> Account</a>
+                <a href="http://search.lib.virginia.edu/account/review"><iron-icon class="largeScreen" icon="user"></iron-icon> Account</a>
               </li>
               <li>
                 <div style="position: relative; display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
                   <a href="" id="alert" on-click="viewAllAlerts" aria-labelledby="alert-text">
-                    <span id="alert-text" class="visibleMobile"> Alerts</span>
+                    <!--<span id="alert-text" class="visibleMobile"> Alerts</span>-->
                     <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
                     <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
                   </a>
