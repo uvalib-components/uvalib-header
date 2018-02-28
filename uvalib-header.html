@@ -218,9 +218,9 @@
       }
       changeFocusToNavigation() {
         if (this.largeScreen) {
-          this.$.menuLargeScreenFirstItem.focus();
+          this.shadowRoot.querySelector('#menuLargeScreenFirstItem').focus();
         } else {
-          this.$.menuNotLargeScreenFirstItem.focus();
+          this.shadowRoot.querySelector('menuNotLargeScreenFirstItem').focus();
         }
       }
       changeFocusToFirstItem() {
