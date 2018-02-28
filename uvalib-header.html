@@ -204,7 +204,8 @@
       }
       /** Closes the menu dialog **/
       closeMenu(){
-        this.shadowRoot.querySelector('#menuDialog').close();
+        var menu = this.shadowRoot.querySelector('#menuDialog');
+        if (menu) menu.close();
       }
       viewAllAlerts(e){
         e.preventDefault();
