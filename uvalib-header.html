@@ -36,7 +36,7 @@
             <nav class="horizontal layout wrap">
               <ul class="vertical layout">
                 <li>
-                  <a id="menuDialogNavFirstItem" href="[[_domain]]/about-uva-library">About</a>
+                  <a id="menuDialogFirstItem" href="[[_domain]]/about-uva-library">About</a>
                 </li>
                 <li>
                   <a href="[[_domain]]/research">Research</a>
@@ -80,7 +80,7 @@
           <nav>
             <ul>
               <li>
-                <a class="largeScreen" id="menuLargeScreenFirstItem" href="[[_domain]]/about-uva-library">About</a>
+                <a class="largeScreen" id="menuFirstItem" href="[[_domain]]/about-uva-library">About</a>
               </li>
               <li>
                 <a class="largeScreen" href="[[_domain]]/research">Research</a>
@@ -214,14 +214,16 @@
         if (this.largeScreen) {
           this.$.search.changeFocusToCatalogAdvanced();
         } else {
+          this.openMenu();
           this.$.menuDialogSearch.changeFocusToCatalogAdvanced();
         }
       }
       changeFocusToNavigation() {
         if (this.largeScreen) {
-          this.shadowRoot.querySelector('#menuLargeScreenFirstItem').focus();
+          this.shadowRoot.querySelector('#menuFirstItem').focus();
         } else {
-          this.shadowRoot.querySelector('menuNotLargeScreenFirstItem').focus();
+          this.openMenu();
+          this.shadowRoot.querySelector('#menuDialogFirstItem').focus();
         }
       }
       changeFocusToFirstItem() {
