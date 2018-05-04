@@ -420,12 +420,18 @@
       connectedCallback() {
         super.connectedCallback();
         this._adjustHeight();
+
         console.log('lazy loading things now!');
+        if (!this.simple) this.importLazyGroup('uvalib-header--full').then((results)=>{
+          this._adjustHeight();
+          this._loadExtraLazyItems();
+        });
+        else this._loadExtraLazyItems();
+
+      }
+      _loadExtraLazyItems(){
         this.importLazyGroup('uvalib-header').then((results) => {
           this._adjustHeight();
-          if (!this.simple) this.importLazyGroup('uvalib-header--full').this((results)=>{
-            this._adjustHeight();
-          });
         });
       }
       _stackedLogo(largeScreen,full,smallScreen){
