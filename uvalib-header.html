@@ -35,6 +35,9 @@
         :host([simple][small-screen]) #spacer {
           display: none;
         }
+        :host([simple][small-screen]) #top > div {
+          display: block;
+        }
 
         :host {
           display: block;
@@ -44,12 +47,12 @@
           transition: height 1s ease;
         }
         uvalib-logos {
-          height: 22px;
-          max-width: 308px;
+          height: calc(var(--uvalib-spacing-unit)*1.375);
+          max-width: calc(var(--uvalib-spacing-unit)*19.25);
         }
         uvalib-logos[stacked] {
-          height: 70px;
-          max-width: 131px;
+          height: calc(var(--uvalib-spacing-unit)*4.375);
+          max-width: calc(var(--uvalib-spacing-unit)*8.1875);
         }
 
         app-header {
@@ -84,11 +87,15 @@
           text-align: right;
         }
         #top {
-          padding-top: 1em;
-          padding-bottom: 1em;
+          padding-top: var(--uvalib-spacing-unit);
+          padding-bottom: var(--uvalib-spacing-unit);
+        }
+        :host([simple][small-screen]) #top {
+          padding-top: 0;
+          padding-bottom: 0;
         }
         #search, #menu {
-          padding-right: 1em;
+          padding-right: var(--uvalib-spacing-unit);
         }
         :host([small-screen]) #logo {
             padding-left: .1em;
@@ -97,12 +104,12 @@
             padding-left: 0;
         }
         #logo {
-            padding-left: 1em;
+            padding-left: var(--uvalib-spacing-unit);
         }
 
         :host([medium-screen]) #top {
-            padding-left: 1em;
-            padding-right: 1em;
+            padding-left: var(--uvalib-spacing-unit);
+            padding-right: var(--uvalib-spacing-unit);
         }
 
         :host([large-screen]) #menuButton { display:none; }
@@ -114,7 +121,7 @@
           color: inherit;
         }
         nav {
-          min-height: 40px;
+          min-height: calc(var(--uvalib-spacing-unit)*2.5);
         }
         nav ul {
           list-style-type: none;
@@ -126,7 +133,7 @@
           color: var(--color-white);
         }
         nav a {
-          padding: 10px;
+          padding: calc(var(--uvalib-spacing-unit)*0.625);
         }
         #bottom nav {
           @apply(--layout-horizontal);
@@ -155,9 +162,9 @@
 
         :host([small-screen]) #menuDialogSearch {
           background-color: var(--uvalib-blue-600);
-          padding: 2em;
-          margin-top: 1em;
-          margin-bottom: 1em;
+          padding: calc(var(--uvalib-spacing-unit)/2);
+          margin-top: var(--uvalib-spacing-unit);
+          margin-bottom: var(--uvalib-spacing-unit);
           margin-left: -.5em;
           margin-right: -.5em;
         }
@@ -165,14 +172,14 @@
         #menuContainer {
           height: 100%;
           @apply --layout-vertical;
-          padding-left: .5em;
-          padding-right: .5em;
+          padding-left: calc(var(--uvalib-spacing-unit)/2);
+          padding-right: calc(var(--uvalib-spacing-unit)/2);
         }
         :host([small-screen]) #menuContainer nav li {
           display: block;
           font-size: 130%;
           padding-left: 1.5em;
-          padding-bottom: .5em;
+          padding-bottom: calc(var(--uvalib-spacing-unit)/2);
         }
 
         #menuTop {
@@ -182,23 +189,30 @@
           @apply --layout-flex;
         }
         #menuButton paper-button {
-          min-width: 4em;
+          min-width: calc(var(--uvalib-spacing-unit)*4);
           border: 1px solid var(--color-white);
           padding-top: .35em;
-          padding-bottom: .25em;
+          padding-bottom: calc(var(--uvalib-spacing-unit)/4);
           margin-right: .75em;
           margin-top: .3em;
         }
         #menuButton.menuLarge paper-button::after {
           font-family: uvalib-custom-icons;
           content: "\f002";
-          padding-left: .5em;
+          padding-left: calc(var(--uvalib-spacing-unit)/2);
         }
 
         #alert paper-badge {
           --paper-badge-background: var(--color-primary-orange);
           --paper-badge-margin-left: -1.65em;
           --paper-badge-margin-bottom: -0.2em;
+        }
+        #simple-menu {
+          float: right;
+        }
+        :host([simple][small-screen]) #simple-menu {
+          float: left;
+          padding-left: var(--uvalib-spacing-unit);
         }
       </style>
     </custom-style>
@@ -249,15 +263,15 @@
         <div id="top">
           <div style="width: 100%;">
             <div id="logo">
-              <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$="[[_stackedLogo(largeScreen,full,smallScreen)]]" text-only$="[[full]]" reverse two-color$="[[simple]]"></uvalib-logos></a>
+              <a href="[[_domain]][[libraryHomeLink]]"><uvalib-logos stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
             </div>
             <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
               <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
             </div>
             <uvalib-search-box hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
 
-            <div id="spacer" hidden$="[[full]]" class="flex"></div>
-            <div id="menu" hidden$="[[full]]">
+            <div id="simple-spacer" hidden$="[[full]]" class="flex"></div>
+            <div id="simple-menu" hidden$="[[full]]">
               <nav>
                 <ul>
                   <li>
@@ -302,7 +316,6 @@
                 <li>
                   <a href="https://search.lib.virginia.edu/account"><iron-icon class="largeScreen" icon="user"></iron-icon> Account</a>
                 </li>
-
                 <li>
                   <div style="position: relative; display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
                     <a href="" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
@@ -311,9 +324,7 @@
                     </a>
                   </div>
                 </li>
-
               </ul>
-
             </nav>
           </div>
 
