@@ -423,7 +423,9 @@
         console.log('lazy loading things now!');
         this.importLazyGroup('uvalib-header').then((results) => {
           this._adjustHeight();
-          if (!this.simple) this.importLazyGroup('uvalib-header--full');
+          if (!this.simple) this.importLazyGroup('uvalib-header--full').this((results)=>{
+            this._adjustHeight();
+          });
         });
       }
       _stackedLogo(largeScreen,full,smallScreen){
@@ -435,6 +437,7 @@
       }
       _adjustHeight() {
         this._height=this.style.height=this.$.header.clientHeight+"px";
+        this.shadowRoot.querySelector('app-header').notifyResize();
       }
       /** Opens the menu dialog (only do this in a smaller screen context) **/
       openMenu(){
