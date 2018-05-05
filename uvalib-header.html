@@ -421,17 +421,18 @@
         super.connectedCallback();
         this._adjustHeight();
 
-        if (!this.simple) this.importLazyGroup('uvalib-header--full').then((results)=>{
-          this._adjustHeight();
-          this._loadExtraLazyItems();
-        });
+        if (!this.simple)
+          this.importLazyGroup('uvalib-header--full').then(function(results){
+            this._adjustHeight();
+            this._loadExtraLazyItems();
+          }.bind(this) );
         else this._loadExtraLazyItems();
 
       }
       _loadExtraLazyItems(){
-        this.importLazyGroup('uvalib-header').then((results) => {
+        this.importLazyGroup('uvalib-header').then(function(results){
           this._adjustHeight();
-        });
+        }.bind(this));
       }
       _stackedLogo(largeScreen,full,smallScreen){
         return (largeScreen && full)? true:
