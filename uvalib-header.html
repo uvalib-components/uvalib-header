@@ -421,7 +421,6 @@
         super.connectedCallback();
         this._adjustHeight();
 
-        console.log('lazy loading things now!');
         if (!this.simple) this.importLazyGroup('uvalib-header--full').then((results)=>{
           this._adjustHeight();
           this._loadExtraLazyItems();
