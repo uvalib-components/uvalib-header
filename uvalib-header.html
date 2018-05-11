@@ -6,10 +6,10 @@
 <link rel="import" href="../iron-meta/iron-meta.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../uvalib-alerts/uvalib-alerts.html">
 
 <dom-module id="uvalib-header">
   <!-- lazy loaded for all states and screens -->
-  <link rel="lazy-import" group="uvalib-header" href="../uvalib-alerts/uvalib-alerts.html">
   <link rel="lazy-import" group="uvalib-header" href="../uvalib-logos/uvalib-logos.html">
   <link rel="lazy-import" group="uvalib-header" href="../iron-icon/iron-icon.html">
   <link rel="lazy-import" group="uvalib-header" href="../paper-badge/paper-badge.html">
@@ -135,12 +135,12 @@
           padding: calc(var(--uvalib-spacing-unit)*0.625);
         }
         #bottom nav {
-          @apply(--layout-horizontal);
-          @apply(--layout-center);
-          @apply(--layout-justified);
+          @apply --layout-horizontal;
+          @apply --layout-center;
+          @apply --layout-justified;
         }
         :host([large-screen]) #bottom nav {
-          @apply(--layout-end-justified);
+          @apply --layout-end-justified;
         }
 
         uvalib-search-box {
@@ -201,7 +201,7 @@
           padding-left: calc(var(--uvalib-spacing-unit)/2);
         }
 
-        #alert paper-badge {
+        #alert paper-badge, #alertSmall paper-badge {
           --paper-badge-background: var(--color-primary-orange);
           --paper-badge-margin-left: -1.65em;
           --paper-badge-margin-bottom: -0.2em;
@@ -277,10 +277,10 @@
                     <a href="//library.virginia.edu/askalibrarian"><iron-icon  class="largeScreen" icon="comments"></iron-icon> Ask a Librarian</a>
                   </li>
                   <li>
-                    <div style="position: relative; display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
-                      <a href="" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
+                    <div style="position: relative; display: inline-block">
+                      <a href="" id="alertSmall" on-click="viewAllAlerts" aria-label="Alerts">
                         <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                        <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                        <paper-badge id="alertBadgeSmall" for="alertSmall" label="[[_alertSeenCount]]"></paper-badge>
                       </a>
                     </div>
                   </li>
@@ -316,20 +316,19 @@
                   <a href="https://search.lib.virginia.edu/account"><iron-icon class="largeScreen" icon="user"></iron-icon> Account</a>
                 </li>
                 <li>
-                  <div style="position: relative; display: inline-block" hide$="[[!_larger(_alertSeenCount,0)]]">
+                  <div style="position: relative; display: inline-block">
                     <a href="" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
                       <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                      <paper-badge for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                      <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
                     </a>
                   </div>
                 </li>
               </ul>
             </nav>
           </div>
-
-          <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
-
         </div>
+
+        <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
       </app-header>
     </template>
     <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
