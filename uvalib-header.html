@@ -1,4 +1,3 @@
-<link rel="import" href="../lazy-imports/lazy-imports-mixin.html">
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
@@ -355,7 +354,7 @@
      * @polymer
      * @demo demo/index.html
      */
-    class UvalibHeader extends Polymer.LazyImportsMixin(UvalibUiElement) {
+    class UvalibHeader extends UvalibUiElement {
       static get is() { return 'uvalib-header'; }
       static get properties() {
         return Object.assign(super.properties,
