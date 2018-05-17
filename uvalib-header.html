@@ -212,6 +212,20 @@
           float: left;
           padding-left: var(--uvalib-spacing-unit);
         }
+
+        /* disable link if no alerts available */
+        a#alert, a#alertSmall {
+          opacity: .5;
+        }
+        a#alert[href], a#alertSmall[href] {
+          opacity: 1;
+        }
+        a#alert paper-badge, a#alertSmall paper-badge {
+          display:none;
+        }
+        a#alert[href] paper-badge, a#alertSmall[href] paper-badge {
+          display: inline-block;
+        }
       </style>
     </custom-style>
 
@@ -277,7 +291,7 @@
                   </li>
                   <li>
                     <div style="position: relative; display: inline-block">
-                      <a href="" id="alertSmall" on-click="viewAllAlerts" aria-label="Alerts">
+                      <a href$="[[_alertLink(_alertSeenCount)]]" id="alertSmall" on-click="viewAllAlerts" aria-label="Alerts">
                         <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
                         <paper-badge id="alertBadgeSmall" for="alertSmall" label="[[_alertSeenCount]]"></paper-badge>
                       </a>
@@ -316,7 +330,7 @@
                 </li>
                 <li>
                   <div style="position: relative; display: inline-block">
-                    <a href="" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
+                    <a href$="[[_alertLink(_alertSeenCount)]]" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
                       <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
                       <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
                     </a>
@@ -411,6 +425,10 @@
         return [
           '_adjustHeight(smallScreen, mediumScreen, largeScreen)'
         ]
+      }
+      _alertLink(alertSeenCount) {
+        if (alertSeenCount>0) return "#link";
+        else return null;
       }
       _makeLinkDomain(relLinks) {
         return (relLinks)? "":"https://www.library.virginia.edu";
