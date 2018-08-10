@@ -20,23 +20,13 @@
 
   <template>
     <custom-style>
-      <style include="uvalib-theme iron-flex">
-        [hide] paper-badge {
-          opacity: 0;
-        }
-        [hide] iron-icon {
-          opacity: .5;
-        }
-        :host([simple]) #top #menu {
-          display: inline-block;
-        }
-        :host([simple][small-screen]) #spacer {
-          display: none;
-        }
-        :host([simple][small-screen]) #top > div {
-          display: block;
-        }
+      <style include="uvalib-theme iron-flex iron-flex-alignment iron-flex-factors">
 
+        [hide] paper-badge { opacity: 0; }
+        [hide] iron-icon { opacity: .5; }
+        :host([simple]) #top #menu { display: inline-block; }
+        :host([simple][small-screen]) #spacer { display: none; }
+        :host([simple][small-screen]) #top > div { display: block; }
         :host {
           display: block;
           position: relative;
@@ -44,14 +34,10 @@
           z-index: 1000;
           transition: height 1s ease;
         }
-        uvalib-logos {
-          height: calc(var(--uvalib-spacing-unit)*1.375);
-          max-width: calc(var(--uvalib-spacing-unit)*19.25);
-        }
-        uvalib-logos[stacked] {
-          height: calc(var(--uvalib-spacing-unit)*4.375);
-          max-width: calc(var(--uvalib-spacing-unit)*8.1875);
-        }
+        :host([large-screen]) #bottom #menu { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
+
+        uvalib-logos { height: calc(var(--uvalib-spacing-unit)*1.375); max-width: calc(var(--uvalib-spacing-unit)*19.25); }
+        uvalib-logos[stacked] { height: calc(var(--uvalib-spacing-unit)*4.375); max-width: calc(var(--uvalib-spacing-unit)*8.1875); }
 
         app-header {
           position: fixed;
@@ -62,92 +48,48 @@
           background-color: var(--uvalib-header-background-color, var(--color-primary-color));
         }
 
-        :host([large-screen]) #bottom #menu {
-          background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue));
-        }
-
         #top, #bottom #menu {
           @apply --layout-horizontal;
           @apply --layout-center-justified;
           background-color: var(--uvalib-header-background-color, var(--color-primary-color));
         }
-        #bottom nav {
-          width: 100%;
+        #bottom nav { width: 100%; }
+        #top > div, #bottom nav { max-width: var(--uvalib-display-width-max); @apply --layout-horizontal; }
+        #top #search, #top #menu, #menuButton { @apply --layout-flex; text-align: right; }
+        #top { padding-top: var(--uvalib-spacing-unit); padding-bottom: var(--uvalib-spacing-unit); }
+        :host([simple][small-screen]) #top { padding-top: 0; padding-bottom: 0; }
+        :host([medium-screen]) #top { padding-left: var(--uvalib-spacing-unit); padding-right: var(--uvalib-spacing-unit); }
 
-        }
-        #top > div, #bottom nav {
-    /*      @apply --layout-flex; */
-          max-width: var(--uvalib-display-width-max);
-          @apply --layout-horizontal;
-        }
-        #top #search, #top #menu, #menuButton {
-          @apply --layout-flex;
-          text-align: right;
-        }
-        #top {
-          padding-top: var(--uvalib-spacing-unit);
-          padding-bottom: var(--uvalib-spacing-unit);
-        }
-        :host([simple][small-screen]) #top {
-          padding-top: 0;
-          padding-bottom: 0;
-        }
-        #search, #menu {
-          padding-right: var(--uvalib-spacing-unit);
-        }
-        :host([small-screen]) #logo {
-            padding-left: .1em;
-        }
-        :host([medium-screen]) #logo {
-            padding-left: 0;
-        }
-        #logo {
-            padding-left: var(--uvalib-spacing-unit);
-        }
+        #search, #menu { padding-right: var(--uvalib-spacing-unit); }
+        :host([large-screen]) #search { min-width: 550px; }
 
-        :host([medium-screen]) #top {
-            padding-left: var(--uvalib-spacing-unit);
-            padding-right: var(--uvalib-spacing-unit);
-        }
+        :host([small-screen]) #logo { padding-left: .1em; }
+        :host([medium-screen]) #logo { padding-left: 0; }
+        #logo { padding-left: var(--uvalib-spacing-unit); }
 
         :host([large-screen]) #menuButton { display:none; }
         :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
         :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
         :host([large-screen]) .visibleMobile, :host([medium-screen]) .visibleMobile { display: none; }
 
-        a, a:link, a:visited {
-          color: inherit;
-        }
-        nav {
-          min-height: calc(var(--uvalib-spacing-unit)*2.5);
-        }
-        nav ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-        }
-        nav li {
-          display: inline-block;
-          color: var(--color-white);
-        }
-        nav a {
-          padding: calc(var(--uvalib-spacing-unit)*0.625);
-        }
+        a, a:link, a:visited { color: inherit; }
+
+        nav { min-height: calc(var(--uvalib-spacing-unit)*2.5); }
+        nav ul { list-style-type: none; margin: 0; padding: 0; }
+        nav li { display: inline-block; color: var(--color-white); }
+        nav a { padding: calc(var(--uvalib-spacing-unit)*0.625); }
+
         #bottom nav {
           @apply --layout-horizontal;
           @apply --layout-center;
           @apply --layout-justified;
         }
-        :host([large-screen]) #bottom nav {
-          @apply --layout-end-justified;
-        }
+        :host([large-screen]) #bottom nav { @apply --layout-end-justified; }
 
-        uvalib-search-box {
-          color: var(--color-white);
-        }
-        paper-button {
-          color: var(--color-white);
-        }
+        uvalib-search-box { color: var(--color-white);  }
+
+        paper-button { color: var(--color-white); }
+
         #menuDialog {
           position: fixed;
           margin: 0;
@@ -180,12 +122,10 @@
           padding-bottom: calc(var(--uvalib-spacing-unit)/2);
         }
 
-        #menuTop {
-          @apply --layout-horizontal;
-        }
-        .spacer {
-          @apply --layout-flex;
-        }
+        #menuTop { @apply --layout-horizontal; }
+
+        .spacer { @apply --layout-flex; }
+
         #menuButton paper-button {
           min-width: calc(var(--uvalib-spacing-unit)*4);
           border: 1px solid var(--color-white);
@@ -194,38 +134,29 @@
           margin-right: .75em;
           margin-top: .3em;
         }
+
+        /*Used on Tablet & Mobile*/
         #menuButton.menuLarge paper-button::after {
           font-family: uvalib-custom-icons;
           content: "\f002";
           padding-left: calc(var(--uvalib-spacing-unit)/2);
         }
 
+        #simple-menu { float: right; }
+        :host([simple][small-screen]) #simple-menu { float: left; padding-left: var(--uvalib-spacing-unit); }
+
+/* ALERTS */
         #alert paper-badge, #alertSmall paper-badge {
           --paper-badge-background: var(--color-primary-orange);
           --paper-badge-margin-left: -1.65em;
           --paper-badge-margin-bottom: -0.2em;
         }
-        #simple-menu {
-          float: right;
-        }
-        :host([simple][small-screen]) #simple-menu {
-          float: left;
-          padding-left: var(--uvalib-spacing-unit);
-        }
 
         /* disable link if no alerts available */
-        a#alert, a#alertSmall {
-          opacity: .5;
-        }
-        a#alert[href], a#alertSmall[href] {
-          opacity: 1;
-        }
-        a#alert paper-badge, a#alertSmall paper-badge {
-          display:none;
-        }
-        a#alert[href] paper-badge, a#alertSmall[href] paper-badge {
-          display: inline-block;
-        }
+        a#alert, a#alertSmall { opacity: .5; }
+        a#alert[href], a#alertSmall[href] { opacity: 1; }
+        a#alert paper-badge, a#alertSmall paper-badge { display:none; }
+        a#alert[href] paper-badge, a#alertSmall[href] paper-badge { display: inline-block; }
       </style>
     </custom-style>
 
@@ -274,14 +205,15 @@
       <app-header id="header" condenses reveals fixed effects="waterfall" role="banner">
         <div id="top">
           <div style="width: 100%;">
-            <div id="logo">
-              <a href="[[libraryHomeLink]]"><uvalib-logos stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
+            <div class="layout horizontal end-justified" style="width: 100%;">
+              <div id="logo" class="flex-2">
+                <a href="[[libraryHomeLink]]"><uvalib-logos stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
+              </div>
+              <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
+                <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
+              </div>
+              <uvalib-search-box class="flex-4" hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
             </div>
-            <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
-              <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
-            </div>
-            <uvalib-search-box hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
-
             <div id="simple-spacer" hidden$="[[full]]" class="flex"></div>
             <div id="simple-menu" hidden$="[[full]]">
               <nav>
@@ -300,7 +232,6 @@
                 </ul>
               </nav>
             </div>
-
           </div>
         </div>
         <div id="bottom" sticky hidden$="[[simple]]">
@@ -510,3 +441,4 @@
     window.customElements.define(UvalibHeader.is, UvalibHeader);
   </script>
 </dom-module>
+
