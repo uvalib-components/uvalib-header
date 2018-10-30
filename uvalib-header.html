@@ -207,10 +207,10 @@
           <div style="width: 100%;">
             <div class="layout horizontal end-justified" style="width: 100%;">
               <div id="logo" class="flex-2">
-                <a href="[[libraryHomeLink]]"><uvalib-logos stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
+                <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
               </div>
               <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
-                <paper-button icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
+                <paper-button tabindex="-1" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
               </div>
               <uvalib-search-box class="flex-4" hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
             </div>
@@ -272,7 +272,7 @@
           </div>
         </div>
 
-        <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
+        <uvalib-alerts tabindex="-1" id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
       </app-header>
     </template>
     <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
@@ -437,4 +437,3 @@
     window.customElements.define(UvalibHeader.is, UvalibHeader);
   </script>
 </dom-module>
-
