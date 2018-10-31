@@ -263,7 +263,9 @@
                   <div style="position: relative; display: inline-block">
                     <a href$="[[_alertLink(_alertSeenCount)]]" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
                       <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                      <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                      <template is="dom-if" if="[[_alertSeenCount]]">
+                        <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                      </template>
                     </a>
                   </div>
                 </li>
