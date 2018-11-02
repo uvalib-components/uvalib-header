@@ -68,7 +68,6 @@
         :host([medium-screen]) #logo { padding-left: 0; }
         #logo { padding-left: var(--uvalib-spacing-unit); }
 
-        :host([large-screen]) #menuButton { display:none; }
         :host([medium-screen]) #search, :host([medium-screen]) .largeScreen { display:none }
         :host([small-screen]) #search, :host([small-screen]) .largeScreen { display:none; }
         :host([large-screen]) .visibleMobile, :host([medium-screen]) .visibleMobile { display: none; }
@@ -208,7 +207,7 @@
           <div id="logo" class="flex-2">
             <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
           </div>
-          <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
+          <div hidden$="[[_or(simple, largeScreen)]]" id="menuButton" class="menuLarge">
             <paper-button tabindex="-1" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box class="flex-4" hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
@@ -291,7 +290,9 @@
                   <div style="position: relative; display: inline-block">
                     <a href$="[[_alertLink(_alertSeenCount)]]" id="alert" on-click="viewAllAlerts" aria-label="Alerts">
                       <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                      <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                      <template is="dom-if" if="[[_alertSeenCount]]">
+                        <paper-badge id="alertBadge" for="alert" label="[[_alertSeenCount]]"></paper-badge>
+                      </template>
                     </a>
                   </div>
                 </li>
