@@ -86,6 +86,8 @@
         }
         :host([large-screen]) #bottom nav { @apply --layout-end-justified; }
 
+        #bottom li a iron-icon { display: inline-block; height: calc(var(--uvalib-main-font-size-unit)*1.875);}
+
         uvalib-search-box { color: var(--color-white);  }
 
         paper-button { color: var(--color-white); }
@@ -261,6 +263,11 @@
             </div>
           </div>
         </div> -->
+
+
+
+
+
         <div id="bottom" sticky hidden$="[[simple]]">
           <div id="menu">
             <nav>
@@ -269,7 +276,7 @@
                   <a class="largeScreen" id="menuFirstItem" href="[[_domain]]/about-uva-library">About</a>
                 </li>
                 <li>
-                  <a class="largeScreen" href="[[_domain]]/research">Research</a>
+                  <a class="largeScreen" href="[[_domain]]/research">Researchy</a>
                 </li>
                 <li>
                   <a class="largeScreen" href="[[_domain]]/collections">Collections</a>
