@@ -356,19 +356,10 @@
                 reflectToAttribute: true,
                 notify: true
               },
-              /** Set this to true when you want the links to be relative (when used in library.virginia.edu) **/
-              relativeLinks: {
-                type: Boolean,
-                value: false
-              },
               /** Tracks the header components height **/
               _height: {
                 type: String,
                 notify: true
-              },
-              _domain: {
-                type: String,
-                computed: "_makeLinkDomain(relativeLinks)"
               },
               _dialogMenu: {
                 type: Boolean,
@@ -391,9 +382,6 @@
       _alertLink(alertSeenCount) {
         if (alertSeenCount>0) return "#link";
         else return null;
-      }
-      _makeLinkDomain(relLinks) {
-        return (relLinks)? "":"https://www.library.virginia.edu";
       }
       connectedCallback() {
         super.connectedCallback();
