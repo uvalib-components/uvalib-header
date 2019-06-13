@@ -36,8 +36,14 @@
         }
         :host([large-screen]) #bottom #menu { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
 
-        uvalib-logos { height: calc(var(--uvalib-spacing-unit)*1.375); max-width: calc(var(--uvalib-spacing-unit)*19.25); }
-        uvalib-logos[stacked] { height: calc(var(--uvalib-spacing-unit)*4.375); max-width: calc(var(--uvalib-spacing-unit)*8.1875); }
+        /*full header*/
+        :host uvalib-logos { }
+        /*simple header*/
+        :host([simple]) uvalib-logos { height: 40px; padding: 0 0 0 10px; }
+        /*mobile header*/
+        :host([small-screen]) uvalib-logos { height: 45px; padding-top: 0px; padding-left: 0px; }
+        /*simple header - mobile*/
+        :host([simple][small-screen]) uvalib-logos { height: 38px; padding-top: 5px; }
 
         app-header {
           position: fixed;
@@ -54,7 +60,7 @@
           background-color: var(--uvalib-header-background-color, var(--color-primary-color));
         }
         #bottom nav { width: 100%; }
-        #top > div, #bottom nav { max-width: var(--uvalib-display-width-max); @apply --layout-horizontal; }
+        /*#top > div,*/ #bottom nav { max-width: var(--uvalib-display-width-max); @apply --layout-horizontal; }
         #top #search, #top #menu { @apply --layout-flex; text-align: right; }
         #menuButton { margin-right: var(--uvalib-spacing-unit); }
         #top { padding-top: var(--uvalib-spacing-unit); padding-bottom: var(--uvalib-spacing-unit); width: 100%; }
@@ -161,12 +167,12 @@
         a#alert[href] paper-badge, a#alertSmall[href] paper-badge { display: inline-block; }
       </style>
     </custom-style>
-
+      <!--mobile header-->
       <template is="dom-if" if="[[_dialogMenu]]">
         <paper-dialog id="menuDialog" with-backdrop>
           <div id="menuContainer">
             <div id="menuTop" class="layout horizontal justified">
-              <a href="[[libraryHomeLink]]"><uvalib-logos text-only reverse></uvalib-logos></a>
+              <a href="[[libraryHomeLink]]"><uvalib-logos simple$="[[simple]]"></uvalib-logos></a>
               <div id="menuButton">
                 <paper-button dialog-dismiss>Close&nbsp;X</paper-button>
               </div>
@@ -203,11 +209,11 @@
           </div>
         </paper-dialog>
       </template>
-
+      <!--default header-->
       <app-header id="header" condenses reveals fixed effects="waterfall" role="banner">
         <div id="top">
           <div id="logo" class="flex-2">
-            <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
+            <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" simple$="[[simple]]"></uvalib-logos></a>
           </div>
           <div hidden$="[[_or(simple, largeScreen)]]" id="menuButton" class="menuLarge">
             <paper-button tabindex="-1" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
@@ -232,42 +238,7 @@
           </div>
         </div>
 
-        <!-- <div id="top">
-          <div style="width: 100%;">
-            <div class="layout horizontal end-justified" style="width: 100%;">
-              <div id="logo" class="flex-2">
-                <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" text-only reverse></uvalib-logos></a>
-              </div>
-              <div hidden$="[[simple]]" id="menuButton" class="menuLarge">
-                <paper-button tabindex="-1" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
-              </div>
-              <uvalib-search-box class="flex-4" hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
-            </div>
-            <div id="simple-spacer" hidden$="[[full]]" class="flex"></div>
-            <div id="simple-menu" hidden$="[[full]]">
-              <nav>
-                <ul>
-                  <li>
-                    <a href="//library.virginia.edu/askalibrarian"><iron-icon  class="largeScreen" icon="comments"></iron-icon> Ask a Librarian</a>
-                  </li>
-                  <li>
-                    <div style="position: relative; display: inline-block">
-                      <a href$="[[_alertLink(_alertSeenCount)]]" id="alertSmall" on-click="viewAllAlerts" aria-label="Alerts">
-                        <iron-icon icon="bell" alt="Library Alerts"></iron-icon>
-                        <paper-badge id="alertBadgeSmall" for="alertSmall" label="[[_alertSeenCount]]"></paper-badge>
-                      </a>
-                    </div>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div> -->
-
-
-
-
-
+        <!--hidden with simple header-->
         <div id="bottom" sticky hidden$="[[simple]]">
           <div id="menu">
             <nav>
