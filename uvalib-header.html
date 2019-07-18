@@ -4,6 +4,7 @@
 <link rel="import" href="../app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../app-storage/app-localstorage/app-localstorage-document.js">
 
 <dom-module id="uvalib-header">
   <!-- lazy loaded for all states and screens -->
@@ -280,8 +281,10 @@
         </div>
         <uvalib-alerts tabindex="-1" id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_delayedAdjustHeight"></uvalib-alerts>
       </app-header>
+      <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
+      <app-localstorage-document key="uvalib-header-height" data="{{_height}}" session-only></app-localstorage-document>
     </template>
-    <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
+
 
   <script>
 
