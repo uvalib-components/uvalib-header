@@ -278,7 +278,7 @@
             </nav>
           </div>
         </div>
-        <uvalib-alerts tabindex="-1" id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_adjustHeight"></uvalib-alerts>
+        <uvalib-alerts tabindex="-1" id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_delayedAdjustHeight"></uvalib-alerts>
       </app-header>
     </template>
     <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
