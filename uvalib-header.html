@@ -175,7 +175,7 @@
             <div id="menuTop" class="layout horizontal justified">
               <a href="[[libraryHomeLink]]"><uvalib-logos simple$="[[simple]]"></uvalib-logos></a>
               <div id="menuButton">
-                <paper-button dialog-dismiss>Close&nbsp;X</paper-button>
+                <paper-button dialog-dismiss aria-label="close menu">Close&nbsp;X</paper-button>
               </div>
             </div>
             <uvalib-search-box relative-links$="[[relativeLinks]]" id="menuDialogSearch" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
@@ -217,7 +217,7 @@
             <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" simple$="[[simple]]"></uvalib-logos></a>
           </div>
           <div hidden$="[[_or(simple, largeScreen)]]" id="menuButton" class="menuLarge">
-            <paper-button tabindex="-1" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
+            <paper-button aria-label="open menu" icon="search" reverse outline on-tap="openMenu">Menu</paper-button>
           </div>
           <uvalib-search-box class="flex-4" hidden$="[[simple]]" relative-links$="[[relativeLinks]]" id="search" small-screen$="[[smallScreen]]" medium-screen$="[[mediumScreen]]" large-screen$="[[largeScreen]]"></uvalib-search-box>
           <div id="simple-menu" hidden$="[[full]]">
