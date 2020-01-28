@@ -35,6 +35,9 @@
           z-index: 1000;
           transition: height 1s ease;
         }
+        :host([demo]) {
+          z-index: 0;
+        }
         :host([large-screen]) #bottom #menu { background-color: var(--uvalib-header-nav-background-color, var(--color-secondary-blue)); }
 
         /*full header*/
@@ -53,6 +56,10 @@
           width: 100%;
           color: var(--color-white);
           background-color: var(--uvalib-header-background-color, var(--color-primary-color));
+        }
+
+        :host([demo]) app-header {
+          position: relative;
         }
 
         #top, #bottom #menu {
@@ -211,7 +218,7 @@
         </paper-dialog>
       </template>
       <!--default header-->
-      <app-header id="header" condenses reveals fixed effects="waterfall" role="banner">
+      <app-header id="header" condenses reveals$="[[!demo]]" fixed$="[[!demo]]" effects="waterfall" role="banner">
         <div id="top">
           <div id="logo" class="flex-2">
             <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" simple$="[[simple]]"></uvalib-logos></a>
@@ -329,6 +336,10 @@
                 observer: '_simpleChange',
                 reflectToAttribute: true,
                 notify: true
+              },
+              demo: {
+                type: Boolean,
+                value: false
               },
               /** Tracks the header components height **/
               _height: {

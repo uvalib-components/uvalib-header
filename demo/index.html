@@ -28,9 +28,10 @@
     <dom-bind id="app">
       <template>
         <uvalib-header simple$="[[simple]]"></uvalib-header>
-        <div class="content">
+        <div class="content" style="margin: 10px">
           Simple? [[simple]]
           <paper-toggle-button checked="{{simple}}"></paper-toggle-button>
+          <uvalib-header simple$="[[simple]]" demo></uvalib-header>
         </div>
       </template>
     </dom-bind>
