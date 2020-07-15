@@ -163,9 +163,18 @@
 
 /* ALERTS */
         #alert paper-badge, #alertSmall paper-badge {
-          --paper-badge-background: var(--color-primary-orange);
-          --paper-badge-margin-left: -1.65em;
-          --paper-badge-margin-bottom: -0.2em;
+          --paper-badge-background: var(--uvalib-yellow);
+          --paper-badge-text-color: var(--uvalib-text-dark);
+          --paper-badge-width: 1.15rem;
+          --paper-badge-height: 1.15rem;
+          --paper-badge-margin-left: -1em;
+          --paper-badge-margin-bottom: -0.99em;
+        }
+        :host {
+          --paper-badge: {
+            font-size: 15px;
+            font-weight: bold;
+          };
         }
 
         /* disable link if no alerts available */
