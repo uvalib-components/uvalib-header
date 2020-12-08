@@ -3,7 +3,8 @@
   "description": "Header element for the UVA Library web apps",
   "main": "uvalib-header.html",
   "dependencies": {
-    "uvalib-elements": "uvalib-components/uvalib-elements#master"
+    "uvalib-elements": "uvalib-components/uvalib-elements#master",
+    "web-components": "uvalib/web-components#master"
   },
   "resolutions": {
     "lodash": "^4.17.4",
@@ -15,6 +16,6 @@
     "iron-resizable-behavior": "^v2.0.0",
     "app-layout": "1 - 2",
     "iron-flex-layout": "^2.0.3",
-    "uva-accordion": "2.0.9"
+    "uva-accordion": "2.0.13"
   }
 }

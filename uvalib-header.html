@@ -1,3 +1,4 @@
+<script type="module" src="../web-components/packages/uvalib-alerts/dist/uvalib-alerts-level4.js" defer async></script>
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
@@ -62,7 +63,7 @@
           position: relative;
         }
 
-        #top, #bottom #menu {
+        #topmain, #bottom #menu {
           @apply --layout-horizontal;
           @apply --layout-center-justified;
           background-color: var(--uvalib-header-background-color, var(--color-primary-color));
@@ -184,6 +185,7 @@
         a#alert[href] paper-badge, a#alertSmall[href] paper-badge { display: inline-block; }
       </style>
     </custom-style>
+
       <!--mobile header-->
       <template is="dom-if" if="[[_dialogMenu]]">
         <paper-dialog id="menuDialog" with-backdrop>
@@ -229,6 +231,8 @@
       <!--default header-->
       <app-header id="header" condenses reveals$="[[!demo]]" fixed$="[[!demo]]" effects="waterfall" role="banner">
         <div id="top">
+          <uvalib-alerts-level4 id="alerts"></uvalib-alerts-level4>
+<div id="topmain">
           <div id="logo" class="flex-2">
             <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" simple$="[[simple]]"></uvalib-logos></a>
           </div>
@@ -253,6 +257,7 @@
               </ul>
             </nav>
           </div>
+</div>
         </div>
 
         <!--hidden with simple header-->
