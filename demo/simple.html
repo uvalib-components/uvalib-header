@@ -7,7 +7,7 @@
     <title>uvalib-header demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
+    <script type="module" src="../../web-components/packages/uvalib-alerts/dist/uvalib-alerts-level4.js" defer async></script>
     <link rel="import" href="../../uvalib-theme/uvalib-theme.html">
     <link rel="import" href="../uvalib-header.html">
 
@@ -24,6 +24,8 @@
     </custom-style>
   </head>
   <body>
-    <uvalib-header></uvalib-header>
+    <uvalib-header>
+      <uvalib-alerts-level4 id="alerts"></uvalib-alerts-level4>
+    </uvalib-header>
   </body>
 </html>

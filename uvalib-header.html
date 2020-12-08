@@ -1,4 +1,3 @@
-<script type="module" src="../web-components/packages/uvalib-alerts/dist/uvalib-alerts-level4.js" defer async></script>
 <link rel="import" href="../uvalib-theme/uvalib-ui-element.html">
 <link rel="import" href="../uvalib-theme/uvalib-icons.html">
 <link rel="import" href="../app-layout/app-header/app-header.html">
@@ -231,7 +230,7 @@
       <!--default header-->
       <app-header id="header" condenses reveals$="[[!demo]]" fixed$="[[!demo]]" effects="waterfall" role="banner">
         <div id="top">
-          <uvalib-alerts-level4 id="alerts"></uvalib-alerts-level4>
+          <slot></slot>
 <div id="topmain">
           <div id="logo" class="flex-2">
             <a href="[[libraryHomeLink]]"><uvalib-logos tabindex="-1" stacked$="[[_and(largeScreen,full)]]" simple$="[[simple]]"></uvalib-logos></a>
