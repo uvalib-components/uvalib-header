@@ -259,7 +259,7 @@
         </div>
 
         <!--hidden with simple header-->
-        <div id="bottom" sticky hidden$="[[simple]]">
+        <div id="bottom" sticky hidden$="[[simple]]" style="z-index:100; position:relative;">
           <div id="menu">
             <nav>
               <ul>
@@ -298,7 +298,7 @@
             </nav>
           </div>
         </div>
-        <uvalib-alerts id="alerts" seen-count="{{_alertSeenCount}}" on-size-changed="_delayedAdjustHeight"></uvalib-alerts>
+        <uvalib-alerts id="alerts" on-seen-count-changed="_seenCountChanged" on-size-changed="_delayedAdjustHeight" style="z-index: 10; position: relative;"></uvalib-alerts>
       </app-header>
       <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
       <app-localstorage-document key="uvalib-header-height" data="{{_height}}" session-only></app-localstorage-document>
@@ -376,6 +376,9 @@
           '_adjustHeight(smallScreen, mediumScreen, largeScreen)'
         ]
       }
+      _seenCountChanged(e){
+        this.alertSeenCount = e.detail.seenCount;
+      }
       _alertLink(alertSeenCount) {
         if (alertSeenCount>0) return "#link";
         else return null;
@@ -401,7 +404,7 @@
         return (largeScreen && full)? true:
                                       (smallScreen && !full);
       }
-      _delayedAdjustHeight(){
+      _delayedAdjustHeight(){       
         setTimeout(function(){ this._adjustHeight(); }.bind(this), 500);
       }
       _adjustHeight() {
