@@ -4,7 +4,6 @@
   "main": "uvalib-header.html",
   "dependencies": {
     "uvalib-elements": "uvalib-components/uvalib-elements#master",
-    "web-components": "uvalib/web-components#master"
   },
   "resolutions": {
     "lodash": "^4.17.4",
