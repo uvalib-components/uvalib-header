@@ -298,7 +298,7 @@
             </nav>
           </div>
         </div>
-        <uvalib-alerts id="alerts" on-seen-count-changed="_seenCountChanged" on-size-changed="_delayedAdjustHeight" style="z-index: 10; position: relative;"></uvalib-alerts>
+        <uvalib-alerts id="alerts" on-seen-count-changed="_seenCountChanged" on-alerts-changed="_delayedAdjustHeight" style="z-index: 10; position: relative;"></uvalib-alerts>
       </app-header>
       <iron-meta key="uvalib-header-height" value="{{_height}}"></iron-meta>
       <app-localstorage-document key="uvalib-header-height" data="{{_height}}" session-only></app-localstorage-document>
