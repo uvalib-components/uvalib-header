@@ -377,7 +377,9 @@
         ]
       }
       _seenCountChanged(e){
-        this.alertSeenCount = e.detail.seenCount;
+console.log("seen count has changed!")  
+console.log(e.detail.seenCount);      
+        this._alertSeenCount = e.detail.seenCount;
       }
       _alertLink(alertSeenCount) {
         if (alertSeenCount>0) return "#link";
